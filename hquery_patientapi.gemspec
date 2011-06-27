@@ -9,6 +9,6 @@ Gem::Specification.new do |s|
   s.authors = ["Marc Hadley", "Andy Gregorowicz", "Rob Dingwell"]
   s.version = '0.1.0'
 
-  s.files = Dir.glob('app/**/**/**') + Dir.glob('lib/**/**/**') + ["README.md","VERSION",'Gemfile']
+  s.files = `git ls-files`.split("\n")
 end
 

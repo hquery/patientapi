@@ -1,6 +1,6 @@
+this.hQuery =  this.hQuery == null ?  {} : this.hQuery
 # =require core.coffee
 # =require medication.coffee
-this.hQuery ||= {}
 # =require condition.coffee
 # =require encounter.coffee
 # =require procedure.coffee

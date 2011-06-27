@@ -1,4 +1,4 @@
-this.hQuery ||= {}
+this.hQuery =  this.hQuery == null ?  {} : this.hQuery
 # =require core.coffee
 ###*
 @class Provider
