@@ -1,4 +1,5 @@
-this.hQuery =  this.hQuery == null ?  {} : this.hQuery
+if(this.hQuery == null)
+    this.hQuery = {}
 # =require core.coffee
 ###*
 An Encounter is an interaction, regardless of the setting, between a patient and a

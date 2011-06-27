@@ -1,4 +1,5 @@
-this.hQuery =  this.hQuery == null ?  {} : this.hQuery
+if(this.hQuery == null)
+    this.hQuery = {}
 # =require core.coffee
 ###*
 This represents all interventional, surgical, diagnostic, or therapeutic procedures or 
