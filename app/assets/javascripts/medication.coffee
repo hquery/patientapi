@@ -1,5 +1,4 @@
-if(this.hQuery == null)
-    this.hQuery = {}
+this.hQuery ||= {}
 # =require core.coffee
 ###*
 @class MedicationInformation

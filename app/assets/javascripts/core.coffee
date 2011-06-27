@@ -1,5 +1,5 @@
-if(this.hQuery == null)
-    this.hQuery = {}
+
+this.hQuery ||= {}
 ###*
 Converts a a number in UTS Seconds since the epoch to a date.
 @param {number} utcSeconds seconds since the epoch in UTC
