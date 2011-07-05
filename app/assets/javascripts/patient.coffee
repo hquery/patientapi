@@ -74,3 +74,9 @@ class hQuery.Patient
     for vital in @json['vital_signs']
       new hQuery.Result vital
       
+  @returns {Array} A list of {@link Immunization} objects
+  ###
+  immunization: ->
+    for immunization in @json['immunization']
+      new hQuery.immunization
+  ###*    
