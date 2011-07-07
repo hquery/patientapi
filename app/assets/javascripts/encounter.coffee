@@ -12,3 +12,4 @@ practitioner
 @augments CodedEntry
 ###
 class hQuery.Encounter extends hQuery.CodedEntry
+  
