@@ -1,11 +1,11 @@
 # =require core.coffee
 # =require medication.coffee
 # =require condition.coffee
-
+# require encounter.coffee
 # =require procedure.coffee
 # =require result.coffee
 this.hQuery ||= {}
-###* 
+###*
 @class Representation of a patient
 ###
 class hQuery.Patient
