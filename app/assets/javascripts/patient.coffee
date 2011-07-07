@@ -5,7 +5,7 @@
 # =require procedure.coffee
 # =require result.coffee
 this.hQuery ||= {}
-###*
+###* 
 @class Representation of a patient
 ###
 class hQuery.Patient
