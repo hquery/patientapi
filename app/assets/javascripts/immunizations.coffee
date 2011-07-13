@@ -1,10 +1,16 @@
+###*
+@namespace scoping into the hquery namespace
+###
 this.hQuery ||= {}
+
+
 # =require core.coffee
 # =require medication.coffee
 
 ###*
 This class represents an Immunization entry for a patient.  
 @class 
+@exports Immunization as hQuery.Immunization 
 ### 
 class hQuery.Immunization
 

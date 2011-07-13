@@ -1,7 +1,13 @@
+###*
+@namespace scoping into the hquery namespace
+###
 this.hQuery ||= {}
+
+
 # =require core.coffee
 ###*
 @class MedicationInformation
+@exports MedicationInformation as hQuery.MedicationInformation
 ###
 class hQuery.MedicationInformation 
   constructor: (@json) ->
@@ -13,6 +19,7 @@ class hQuery.MedicationInformation
       new hQuery.Organization(@json['drugManufacturer'])
 ###*
 @class Dose - a medications dose information  , unit and value
+@exports Dose as hQuery.Dose
 ###
 class hQuery.Dose
   constructor: (@json) ->
@@ -22,6 +29,7 @@ class hQuery.Dose
   
 ###*
 @class DoseRestriction -  restrictions on the medications dose, represented by a upper and lower dose
+@exports DoseRestriction as hQuery.DoseRestriction
 ###
 class hQuery.DoseRestriction
   constructor: (@json) ->
@@ -31,6 +39,7 @@ class hQuery.DoseRestriction
 
 ###*
 @class FulFillment -  Thie information about when and who fulfilled an order for the medication
+@exports FulFillment as hQuery.Fullfilement
 ###
 class hQuery.FulFillment
  constructor: (@json) ->
@@ -51,6 +60,7 @@ class hQuery.FulFillment
 This class represents a medication entry for a patient.  
 
 @class 
+@exports Medication as hQuery.Medication
 ### 
 class hQuery.Medication 
   ###*

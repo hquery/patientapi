@@ -4,9 +4,15 @@
 # =require encounter.coffee
 # =require procedure.coffee
 # =require result.coffee
+###*
+@namespace scoping into the hquery namespace
+###
 this.hQuery ||= {}
+
+
 ###*
 @class Representation of a patient
+@exports Patient as hQuery.Patient
 ###
 class hQuery.Patient
   ###*
@@ -32,7 +38,7 @@ class hQuery.Patient
     hQuery.dateFromUtcSeconds @json['birthdate']
 
   ###*
-  @returns {Array} A list of {@link Encounter} objects
+  @returns {Array} A list of {@link hQuery.Encounter} objects
   ###
   encounters: ->
     for encounter in @json['encounters']

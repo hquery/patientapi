@@ -1,4 +1,9 @@
+###*
+@namespace scoping into the hquery namespace
+###
 this.hQuery ||= {}
+
+
 # =require core.coffee
 ###*
 An Encounter is an interaction, regardless of the setting, between a patient and a
@@ -8,8 +13,10 @@ as non face-to-face interactions. It is also a contact between a patient and a
 practitioner who has primary responsibility for assessing and treating the
 patient at a given contact, exercising independent judgment.
 @class An Encounter is an interaction, regardless of the setting, between a patient and a
-practitioner
+practitioner 
 @augments CodedEntry
+@exports Encounter as hQuery.Encounter 
+@link {hQuery.CodedEntry }
 ###
 class hQuery.Encounter extends hQuery.CodedEntry
   

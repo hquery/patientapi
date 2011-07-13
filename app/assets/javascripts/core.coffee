@@ -1,15 +1,20 @@
-
+###*
+@namespace scoping into the hquery namespace
+###
 this.hQuery ||= {}
+
 ###*
 Converts a a number in UTS Seconds since the epoch to a date.
 @param {number} utcSeconds seconds since the epoch in UTC
 @returns {Date}
+@exports dateFromUtcSeconds as hQuery.dateFromUtcSeconds 
 ###
 hQuery.dateFromUtcSeconds = (utcSeconds) ->
   new Date utcSeconds * 1000
 
 ###*
 @class A code with its corresponding code system
+@exports CodedValue as hQuery.CodedValue 
 ###
 class hQuery.CodedValue
   ###*
@@ -33,6 +38,7 @@ class hQuery.CodedValue
 
 ###*
 @class an Address for a person or organization 
+@exports Address as hQuery.Address 
 ###
 class hQuery.Address
   constructor: (@json) ->
@@ -60,7 +66,9 @@ class hQuery.Address
 
 ###*
 @class an object that describes a means to contact an entity.  This is used to represent 
-phone numbers, email addresses,  instant messaging accounts ....  
+phone numbers, email addresses,  instant messaging accounts ....
+
+@exports Telecom as hQuery.Telecom   
 ###
 class hQuery.Telecom
   constructor: (@json) ->
@@ -84,6 +92,7 @@ class hQuery.Telecom
 
 ###*
 @class an object that describes a person.  includes a persons name, addresses, and contact information
+@exports Person as hQuery.Person 
 ###
 class hQuery.Person
   constructor: (@json) ->
@@ -96,13 +105,13 @@ class hQuery.Person
    ###
   last: -> @json['last']
   ###*
-   @returns {Array} an array of {@link Address} objects associated with the person
+   @returns {Array} an array of {@link hQuery.Address} objects associated with the person
    ###
   addresses: ->
     for address in @json['addresses']
       new hQuery.Address address
   ###*
-  @returns {Array} an array of {@link Telecom} objects associated with the person
+  @returns {Array} an array of {@link hQuery.Telecom} objects associated with the person
   ###
   telecoms: ->
     for tel in @json['telecoms']
@@ -111,6 +120,7 @@ class hQuery.Person
 
 ###*
 @class an actor is either a person or an organization
+@exports Actor as hQuery.Actor 
 ###
 class hQuery.Actor
   constructor: (@json) ->
@@ -123,13 +133,18 @@ class hQuery.Actor
       
 
 ###*
-@class an organization
+@class an Organization
+@exports Organization as hQuery.Organization 
 ###
 class hQuery.Organization
   constructor: (@json) ->
 
 
-
+###*
+This class represents a DateRange in the form of hi and low date values.
+@class
+@exports DateRange as hQuery.DateRange 
+###
 class hQuery.DateRange
   constructor: (@json) ->
   hi: -> 
@@ -137,15 +152,30 @@ class hQuery.DateRange
       dateFromUtcSeconds @json['hi'] 
   low: ->   dateFromUtcSeconds @json['low'] 
     
+###*
+
+Class used to describe an entity that is providing some form of information.  This does not mean that they are 
+providing any treatment just that they are providing information.
+@class
+@exports Informant as hQuery.Informant 
+###    
 class hQuery.Informant
   constructor: (@json) ->
+  ###*
+  an array of hQuery.Person objects as points of contact
+  @returns {Array}  
+  ###
   contacts: ->
     for contact in @json['contacts'] 
       new hQuery.Person contact
+  ###*
+   @returns {hQuery.Organization} the organization providing the information
+  ###    
   organization: -> new hQuery.Organization @json['organization']    
     
 ###*
 @class
+@exports CodedEntry as hQuery.CodedEntry 
 ###
 class hQuery.CodedEntry
   ###*

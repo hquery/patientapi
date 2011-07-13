@@ -1,4 +1,8 @@
+###*
+@namespace scoping into the hquery namespace
+###
 this.hQuery ||= {}
+
 # =require core.coffee
 ###*
 @class Provider
@@ -10,13 +14,25 @@ this.hQuery ||= {}
   
   The provider is represented by the core:actor substitution group which equates to either a 
   person element or and organization element being present.
-  
+  @exports Provider as hQuery.Provider 
 ###
 class hQuery.Provider
   constructor: (@json) ->
-  effectiveDate: -> new DateRange @json['effectiveDate'] 
-  actor: -> new Actor @json['actor'] 
-  informant: -> new Informant @json['informant'] 
+    ###*
+     @returns {hQuery.DateRange} the date range this provider provided treatment
+    ###
+  effectiveDate: -> new hQuery.DateRange @json['effectiveDate'] 
+  ###*
+   @returns {hQuery.Actor} the person or organization the provided the treatment
+  ###
+  actor: -> new hQuery.Actor @json['actor'] 
+  ###*
+   @returns {hQuery.Informant} the person or organization that is providing the information about this provider
+  ###
+  informant: -> new hQuery.Informant @json['informant'] 
+  ###*
+   @returns {String} Free text block
+  ###
   narrative: -> @json['narrative']
 
 ###*
@@ -35,18 +51,36 @@ Element names map to the hData CoC profile
 
 narrative element referrs to narrative (human readable) style content. Usually a human readable version of the
 encoded content.
-
+@exports Condition as hQuery.Condition 
 ###  
 class hQuery.Condition
+  
 ###*
 @param {Object} A hash representing the Condition
 @constructs
 ###
 constructor: (@json) ->
+  ###*
+  @returns {hQuery.CodedValue} codedvalue of the condition type 
+  ### 
   type: -> new hQuery.CodedValue @json['problemType'].codeSystem, @json['problemType'].code 
+  
+  ###*
+   @returns {String} the name of the condition
+  ###
   name: -> @json['problemName']
+  ###*
+   @returns {hQuery.DateRange} the date range of the condition
+  ###
   date: -> new hQuery.DateRange(@json['problemDate'])
+  ###*
+   @returns {hQuery.CodedValue} the coded value information for the condition
+  ###
   code: ->  new hQuery.CodedValue @json['problemCode'].codeSystem, @json['problemCode'].code 
+  
+  ###*
+   @returns {Array, hQuery.Provider} an array of providers for the condition
+  ###
   providers: ->    
     for  provider in @json['treatingProviders'] 
        new Provider provider 

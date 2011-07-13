@@ -1,0 +1,4 @@
+.bundle
+tmp/
+.DS_Store
+doc/patient-api
