@@ -194,7 +194,7 @@ class hQuery.CodedEntry
   An Array of CodedValues which describe what kind of coded entry took place
   @returns {Array}
   ###
-  type: -> createCodedValues @json['codes']
+  type: -> hQuery.createCodedValues @json['codes']
 
   ###*
   A free text description of the type of coded entry

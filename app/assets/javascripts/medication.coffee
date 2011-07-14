@@ -11,7 +11,7 @@ this.hQuery ||= {}
 ###
 class hQuery.MedicationInformation 
   constructor: (@json) ->
-  drugName: -> @json['drugName']
+  drugName: -> hQuery.createCodedValues @json['codedProducts']
   lotNumber: -> @json['lotNumber']
   brandName: -> @json['brandName']
   drugManufacturer: -> 
