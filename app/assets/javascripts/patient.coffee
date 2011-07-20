@@ -41,8 +41,11 @@ class hQuery.Patient
   @returns {Array} A list of {@link hQuery.Encounter} objects
   ###
   encounters: ->
-    for encounter in @json['encounters']
-      new hQuery.Encounter encounter
+    if @json['encounters']
+      for encounter in @json['encounters']
+        new hQuery.Encounter encounter
+    else
+      []
     
   ###*
   @returns {Array} A list of {@link Medication} objects
