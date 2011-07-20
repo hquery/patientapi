@@ -26,6 +26,7 @@ namespace :doc do
     end
   end
   
+  desc "Generate docs for patient API"
   task :js => :generate_js do
     system 'java -jar ./doc/jsdoc-toolkit/jsrun.jar ./doc/jsdoc-toolkit/app/run.js -t=doc/jsdoc-toolkit/templates/jsdoc -a tmp/patient.js -d=doc/patient-api'
   end
