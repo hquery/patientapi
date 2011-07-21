@@ -34,7 +34,18 @@ class hQuery.CodedValue
   ###
   codeSystemName: -> @csn
 
-
+  ###*
+  Returns true if the contained code and codeSystemName match a code in the supplied codeSet.
+  @param {Object} codeSet a hash with code system names as keys and an array of codes as values
+  @returns {boolean}
+  ###
+  includedIn: (codeSet) ->
+    for codeSystemName, codes of codeSet
+      if @csn==codeSystemName
+        for code in codes
+          if code==@c
+            return true
+    return false
 
 ###*
 @class an Address for a person or organization 
@@ -179,7 +190,7 @@ class hQuery.Informant
 ###
 class hQuery.CodedEntry
   ###*
-  @param {Object} A hash representing the coded entry
+  @param {Object} @json A hash representing the coded entry
   @constructor
   ###
   constructor: (@json) ->
@@ -207,6 +218,17 @@ class hQuery.CodedEntry
   @returns {String}
   ###
   id: -> @json['id']
+  
+  ###*
+  Returns true if any of this entry's codes match a code in the supplied codeSet.
+  @param {Object} codeSet a hash with code system names as keys and an array of codes as values
+  @returns {boolean}
+  ###
+  includesCodeFrom: (codeSet) ->
+    for codedValue in this.type()
+      if codedValue.includedIn(codeSet)
+        return true
+    return false
 
 ###*
 @private

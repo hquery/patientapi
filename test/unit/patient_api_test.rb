@@ -18,6 +18,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 2, @context.eval('patient.encounters().length')
     assert_equal '99201', @context.eval('patient.encounters()[0].type()[0].code()')
     assert_equal 'CPT', @context.eval('patient.encounters()[0].type()[0].codeSystemName()')
+    assert @context.eval('patient.encounters()[0].includesCodeFrom({"RxNorm": ["1","2"], "CPT": ["44388", "99201"]})')
   end
   
   def test_procedures
@@ -25,6 +26,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal '44388', @context.eval('patient.procedures()[0].type()[0].code()')
     assert_equal 'CPT', @context.eval('patient.procedures()[0].type()[0].codeSystemName()')
     assert_equal 'Colonscopy', @context.eval('patient.procedures()[0].freeTextType()')
+    assert @context.eval('patient.procedures()[0].includesCodeFrom({"CPT": ["44388"]})')
   end
   
   def test_vital_signs
