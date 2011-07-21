@@ -5,13 +5,16 @@ class PatientApiTest  < Test::Unit::TestCase
     patient_api = QueryExecutor.patient_api_javascript.to_s
     fixture_json = File.read('test/fixtures/patient/barry_berry.json')
     initialize_patient = 'var patient = new hQuery.Patient(barry);'
-    @context = ExecJS.compile(patient_api + "\n" + fixture_json + "\n" + initialize_patient)
+    date = Time.new(2010,1,1)
+    initialize_date = "var sampleDate = new Date(#{date.to_i*1000});"
+    @context = ExecJS.compile(patient_api + "\n" + fixture_json + "\n" + initialize_patient + "\n" + initialize_date)
   end
   
   def test_demographics
     assert_equal 'Barry', @context.eval('patient.given()')
     assert_equal 1962, @context.eval('patient.birthtime().getFullYear()')
     assert_equal 'M', @context.eval('patient.gender()')
+    assert_equal 48, @context.eval('patient.age()').to_i
   end
   
   def test_encounters

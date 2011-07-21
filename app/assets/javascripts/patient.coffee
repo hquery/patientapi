@@ -29,6 +29,10 @@ class hQuery.Patient
   @returns {String} containing the patient's given name
   ###
   given: -> @json['first']
+
+  ###*
+  @returns {String} containing the patient's family name
+  ###
   family: -> @json['last']
 
   ###*
@@ -36,6 +40,15 @@ class hQuery.Patient
   ###
   birthtime: ->
     hQuery.dateFromUtcSeconds @json['birthdate']
+    
+  ###*
+  @param (Date) date the date at which the patient age is calculated, defaults to now.
+  @returns {number} the patient age in years
+  ###
+  age: (date = new Date()) ->
+    oneDay = 24*60*60*1000;
+    oneYear = 365*oneDay;
+    return (date.getTime()-this.birthtime().getTime())/oneYear;
 
   ###*
   @returns {Array} A list of {@link hQuery.Encounter} objects
