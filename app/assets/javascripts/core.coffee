@@ -189,10 +189,6 @@ class hQuery.Informant
 @exports CodedEntry as hQuery.CodedEntry 
 ###
 class hQuery.CodedEntry
-  ###*
-  @param {Object} @json A hash representing the coded entry
-  @constructor
-  ###
   constructor: (@json) ->
 
   ###*

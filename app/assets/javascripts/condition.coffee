@@ -55,11 +55,12 @@ encoded content.
 ###  
 class hQuery.Condition
   
-###*
-@param {Object} A hash representing the Condition
-@constructs
-###
-constructor: (@json) ->
+  ###*
+  @param {Object} A hash representing the Condition
+  @constructs
+  ###
+  constructor: (@json) ->
+
   ###*
   @returns {hQuery.CodedValue} codedvalue of the condition type 
   ### 
