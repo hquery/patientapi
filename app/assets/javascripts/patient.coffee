@@ -95,7 +95,25 @@ class hQuery.Patient
   vitalSigns: ->
     for vital in @json['vital_signs']
       new hQuery.Result vital
-      
+  
+  ###*
+  Return the number of entries within the supplied array of CodedEntry that match the
+  supplied code set where those entries occur between the supplied time bounds
+  @param {Array} entries an array of CodedEntry objects
+  @param {Object} codeSet a hash with code system names as keys and an array of codes as values
+  @param {Date} start the start of the period during which the entry must occur, a null value will match all times
+  @param {Date} end the end of the period during which the entry must occur, a null value will match all times
+  @return {int} the count of matching entries
+  ###
+  countMatchingWithinPeriod: (entries, codeSet, start, end) ->
+    matchingEntries = 0
+    for entry in entries
+      afterStart = (!start || entry.date>=start)
+      beforeEnd = (!end || entry.date<=end)
+      if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet))
+        matchingEntries++;
+    matchingEntries
+  
   ###*      
   @returns {Array} A list of {@link Immunization} objects
   ###

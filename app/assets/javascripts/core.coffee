@@ -158,10 +158,11 @@ This class represents a DateRange in the form of hi and low date values.
 ###
 class hQuery.DateRange
   constructor: (@json) ->
-  hi: -> 
+  hi: ->
     if @json['hi'] 
       dateFromUtcSeconds @json['hi'] 
-  low: ->   dateFromUtcSeconds @json['low'] 
+  low: ->
+    dateFromUtcSeconds @json['low'] 
     
 ###*
 
