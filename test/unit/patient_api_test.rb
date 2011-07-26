@@ -30,6 +30,8 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'CPT', @context.eval('patient.procedures()[0].type()[0].codeSystemName()')
     assert_equal 'Colonscopy', @context.eval('patient.procedures()[0].freeTextType()')
     assert @context.eval('patient.procedures()[0].includesCodeFrom({"CPT": ["44388"]})')
+    assert_equal 1, @context.eval('patient.countMatchingWithinPeriod(patient.procedures(), {"CPT": ["44388"]})')
+    assert_equal 0, @context.eval('patient.countMatchingWithinPeriod(patient.procedures(), {"CPT": ["44388"]}, sampleDate)')
   end
   
   def test_vital_signs
