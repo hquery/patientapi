@@ -14,7 +14,7 @@ practitioner who has primary responsibility for assessing and treating the
 patient at a given contact, exercising independent judgment.
 @class An Encounter is an interaction, regardless of the setting, between a patient and a
 practitioner 
-@augments CodedEntry
+@augments hQuery.CodedEntry
 @exports Encounter as hQuery.Encounter 
 @link {hQuery.CodedEntry }
 ###

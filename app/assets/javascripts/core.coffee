@@ -1,4 +1,5 @@
 ###*
+@class hQuery
 @namespace scoping into the hquery namespace
 ###
 this.hQuery ||= {}

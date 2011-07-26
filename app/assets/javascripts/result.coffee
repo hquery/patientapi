@@ -11,7 +11,7 @@ includes hematology, chemistry, serology, virology, toxicology, microbiology, pl
 ultrasound, CT, MRI, angiography, cardiac echo, nuclear medicine, pathology, and procedure
 observations.
 @class
-@augments CodedEntry
+@augments hQuery.CodedEntry
 @exports Result as hQuery.Result 
 ###
 class hQuery.Result extends hQuery.CodedEntry

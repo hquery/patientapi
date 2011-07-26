@@ -44,6 +44,8 @@ class PatientApiTest  < Test::Unit::TestCase
   
   def test_conditions
     assert_equal 2, @context.eval('patient.conditions().length')
+    assert @context.eval('patient.countMatchingWithinPeriod(patient.conditions(), {"SNOMED-CT": ["105539002"]})')
+    assert @context.eval('patient.countMatchingWithinPeriod(patient.conditions(), {"SNOMED-CT": ["109838007"]})')
   end  
   
   def test_medications

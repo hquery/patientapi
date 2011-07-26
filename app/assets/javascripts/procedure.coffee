@@ -9,7 +9,7 @@ this.hQuery ||= {}
 This represents all interventional, surgical, diagnostic, or therapeutic procedures or 
 treatments pertinent to the patient.
 @class
-@augments CodedEntry
+@augments hQuery.CodedEntry
 @exports Procedure as hQuery.Procedure 
 ###
 class hQuery.Procedure extends hQuery.CodedEntry
