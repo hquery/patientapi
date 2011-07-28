@@ -7,6 +7,7 @@ this.hQuery ||= {}
 Converts a a number in UTC Seconds since the epoch to a date.
 @param {number} utcSeconds seconds since the epoch in UTC
 @returns {Date}
+@function
 @exports dateFromUtcSeconds as hQuery.dateFromUtcSeconds 
 ###
 hQuery.dateFromUtcSeconds = (utcSeconds) ->
@@ -256,6 +257,8 @@ class hQuery.CodedEntryList extends Array
 
 ###*
 @private
+@function
+
 ###
 hQuery.createCodedValues = (jsonCodes) ->
   codedValues = []
