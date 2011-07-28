@@ -16,7 +16,6 @@ patient at a given contact, exercising independent judgment.
 practitioner 
 @augments hQuery.CodedEntry
 @exports Encounter as hQuery.Encounter 
-@link {hQuery.CodedEntry }
 ###
 class hQuery.Encounter extends hQuery.CodedEntry
   
