@@ -30,8 +30,8 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'CPT', @context.eval('patient.procedures()[0].type()[0].codeSystemName()')
     assert_equal 'Colonscopy', @context.eval('patient.procedures()[0].freeTextType()')
     assert @context.eval('patient.procedures()[0].includesCodeFrom({"CPT": ["44388"]})')
-    assert_equal 1, @context.eval('patient.countMatchingWithinPeriod(patient.procedures(), {"CPT": ["44388"]})')
-    assert_equal 0, @context.eval('patient.countMatchingWithinPeriod(patient.procedures(), {"CPT": ["44388"]}, sampleDate)')
+    assert_equal 1, @context.eval('patient.procedures().match({"CPT": ["44388"]})')
+    assert_equal 0, @context.eval('patient.procedures().match({"CPT": ["44388"]}, sampleDate)')
   end
   
   def test_vital_signs
@@ -44,8 +44,8 @@ class PatientApiTest  < Test::Unit::TestCase
   
   def test_conditions
     assert_equal 2, @context.eval('patient.conditions().length')
-    assert @context.eval('patient.countMatchingWithinPeriod(patient.conditions(), {"SNOMED-CT": ["105539002"]})')
-    assert @context.eval('patient.countMatchingWithinPeriod(patient.conditions(), {"SNOMED-CT": ["109838007"]})')
+    assert @context.eval('patient.conditions().match({"SNOMED-CT": ["105539002"]})')
+    assert @context.eval('patient.conditions().match({"SNOMED-CT": ["109838007"]})')
   end  
   
   def test_medications

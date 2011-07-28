@@ -16,7 +16,7 @@ this.hQuery ||= {}
 ###
 class hQuery.Patient
   ###*
-  @constructs
+  @constructor
   ###
   constructor: (@json) ->
 
@@ -51,74 +51,74 @@ class hQuery.Patient
     return (date.getTime()-this.birthtime().getTime())/oneYear;
 
   ###*
-  @returns {Array} A list of {@link hQuery.Encounter} objects
+  @returns {hQuery.CodedEntryList} A list of {@link hQuery.Encounter} objects
   ###
   encounters: ->
+    list = new hQuery.CodedEntryList
     if @json['encounters']
       for encounter in @json['encounters']
-        new hQuery.Encounter encounter
-    else
-      []
+        list.push(new hQuery.Encounter(encounter))
+    list
     
   ###*
-  @returns {Array} A list of {@link Medication} objects
+  @returns {hQuery.CodedEntryList} A list of {@link Medication} objects
   ###
   medications: ->
-    for medication in @json['medications']
-      new hQuery.Medication medication
+    list = new hQuery.CodedEntryList
+    if @json['medications']
+      for medication in @json['medications']
+        list.push(new hQuery.Medication(medication))
+    list
       
       
   ###*
-  @returns {Array} A list of {@link Condition} objects
+  @returns {hQuery.CodedEntryList} A list of {@link Condition} objects
   ###
   conditions: ->
-    for condition in @json['conditions']
-      new hQuery.Condition condition
+    list = new hQuery.CodedEntryList
+    if @json['conditions']
+      for condition in @json['conditions']
+        list.push(new hQuery.Condition(condition))
+    list
 
   ###*
-  @returns {Array} A list of {@link Procedure} objects
+  @returns {hQuery.CodedEntryList} A list of {@link Procedure} objects
   ###
   procedures: ->
-    for procedure in @json['procedures']
-      new hQuery.Procedure procedure
+    list = new hQuery.CodedEntryList
+    if @json['procedures']
+      for procedure in @json['procedures']
+        list.push(new hQuery.Procedure(procedure))
+    list
       
   ###*
-  @returns {Array} A list of {@link Result} objects
+  @returns {hQuery.CodedEntryList} A list of {@link Result} objects
   ###
   results: ->
-    for result in @json['results']
-      new hQuery.Result result
+    list = new hQuery.CodedEntryList
+    if @json['results']
+      for result in @json['results']
+        list.push(new hQuery.Result(result))
+    list
 
   ###*
-  @returns {Array} A list of {@link Result} objects
+  @returns {hQuery.CodedEntryList} A list of {@link Result} objects
   ###
   vitalSigns: ->
-    for vital in @json['vital_signs']
-      new hQuery.Result vital
-  
-  ###*
-  Return the number of entries within the supplied array of CodedEntry that match the
-  supplied code set where those entries occur between the supplied time bounds
-  @param {Array} entries an array of CodedEntry objects
-  @param {Object} codeSet a hash with code system names as keys and an array of codes as values
-  @param {Date} start the start of the period during which the entry must occur, a null value will match all times
-  @param {Date} end the end of the period during which the entry must occur, a null value will match all times
-  @return {int} the count of matching entries
-  ###
-  countMatchingWithinPeriod: (entries, codeSet, start, end) ->
-    matchingEntries = 0
-    for entry in entries
-      afterStart = (!start || entry.date>=start)
-      beforeEnd = (!end || entry.date<=end)
-      if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet))
-        matchingEntries++;
-    matchingEntries
+    list = new hQuery.CodedEntryList
+    if @json['vital_signs']
+      for vital in @json['vital_signs']
+        list.push(new hQuery.Result(vital))
+    list
   
   ###*      
-  @returns {Array} A list of {@link Immunization} objects
+  @returns {hQuery.CodedEntryList} A list of {@link Immunization} objects
   ###
   ###*
   immunization: ->
-    for immunization in @json['immunization']
-      new hQuery.immunization
+    list = new hQuery.CodedEntryList
+    if @json['immunization']
+      for immunization in @json['immunization']
+        list.push(new hQuery.Immunization(immunization))
+    list
   ### 

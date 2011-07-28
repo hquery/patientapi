@@ -1,11 +1,10 @@
 ###*
-@class hQuery
 @namespace scoping into the hquery namespace
 ###
 this.hQuery ||= {}
 
 ###*
-Converts a a number in UTS Seconds since the epoch to a date.
+Converts a a number in UTC Seconds since the epoch to a date.
 @param {number} utcSeconds seconds since the epoch in UTC
 @returns {Date}
 @exports dateFromUtcSeconds as hQuery.dateFromUtcSeconds 
@@ -77,25 +76,28 @@ class hQuery.Address
 
 
 ###*
-@class an object that describes a means to contact an entity.  This is used to represent 
-phone numbers, email addresses,  instant messaging accounts ....
-
+@class An object that describes a means to contact an entity.  This is used to represent 
+phone numbers, email addresses,  instant messaging accounts etc.
 @exports Telecom as hQuery.Telecom   
 ###
 class hQuery.Telecom
   constructor: (@json) ->
+  
   ###*
   @returns {String} the type of telecom entry, phone, sms, email ....
   ###  
   type: -> @json['type']
+  
   ###*
   @returns {String} the value of the entry -  the actual phone number , email address , ....
   ###  
   value: -> @json['value']
+  
   ###*
   @returns {String} the use of the entry. Is it a home, office, .... type of contact
   ###  
   use: -> @json['use']
+  
   ###*
   @returns {Boolean} is this a preferred form of contact
   ###  
@@ -153,8 +155,7 @@ class hQuery.Organization
 
 
 ###*
-This class represents a DateRange in the form of hi and low date values.
-@class
+@class represents a DateRange in the form of hi and low date values.
 @exports DateRange as hQuery.DateRange 
 ###
 class hQuery.DateRange
@@ -166,10 +167,8 @@ class hQuery.DateRange
     dateFromUtcSeconds @json['low'] 
     
 ###*
-
-Class used to describe an entity that is providing some form of information.  This does not mean that they are 
+@class Class used to describe an entity that is providing some form of information.  This does not mean that they are 
 providing any treatment just that they are providing information.
-@class
 @exports Informant as hQuery.Informant 
 ###    
 class hQuery.Informant
@@ -191,6 +190,10 @@ class hQuery.Informant
 @exports CodedEntry as hQuery.CodedEntry 
 ###
 class hQuery.CodedEntry
+  ###*
+  @constructor
+  @param {Object} @json the JSON hash of the entry
+  ###
   constructor: (@json) ->
 
   ###*
@@ -227,6 +230,34 @@ class hQuery.CodedEntry
       if codedValue.includedIn(codeSet)
         return true
     return false
+
+###*
+@class Represents a list of hQuery.CodedEntry instances. Offers utility methods for matching
+entries based on codes and date ranges
+@exports CodedEntryList as hQuery.CodedEntryList
+###
+class hQuery.CodedEntryList extends Array
+  constructor: ->
+    @push arguments...
+    
+  ###*
+  Return the number of entries that match the
+  supplied code set where those entries occur between the supplied time bounds
+  @param {Object} codeSet a hash with code system names as keys and an array of codes as values
+  @param {Date} start the start of the period during which the entry must occur, a null value will match all times
+  @param {Date} end the end of the period during which the entry must occur, a null value will match all times
+  @return {int} the count of matching entries
+  ###
+  match: (codeSet, start, end) ->
+    matchingEntries = 0
+    for entry in this
+      afterStart = (!start || entry.date>=start)
+      beforeEnd = (!end || entry.date<=end)
+      if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet))
+        matchingEntries++;
+    matchingEntries
+  
+
 
 ###*
 @private
