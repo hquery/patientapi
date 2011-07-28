@@ -196,7 +196,7 @@ class hQuery.CodedEntry
   Date and time at which the coded entry took place
   @returns {Date}
   ###
-  date: -> dateFromUtcSeconds: @json['time']
+  date: -> hQuery.dateFromUtcSeconds @json['time']
 
   ###*
   An Array of CodedValues which describe what kind of coded entry took place
@@ -247,12 +247,11 @@ class hQuery.CodedEntryList extends Array
   match: (codeSet, start, end) ->
     matchingEntries = 0
     for entry in this
-      afterStart = (!start || entry.date>=start)
-      beforeEnd = (!end || entry.date<=end)
+      afterStart = (!start || entry.date()>=start)
+      beforeEnd = (!end || entry.date()<=end)
       if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet))
         matchingEntries++;
     matchingEntries
-  
 
 
 ###*
