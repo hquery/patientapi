@@ -39,13 +39,7 @@ var barry = { "first" : "Barry",
     "description" : "Colonscopy" } ],
   "results" : [],
   "medications" : [ 
-    { "freeTextSig": "Influenza Vaccine, take once",
-      "medicationInformation": 
-        {"codedProducts" : { "RxNorm" : [ 
-          "857924" ] }},
-      "time" : 1286382415,
-      "description" : "Influenza Vaccine" }, 
     { "codes" : { "RxNorm" : [ 
           "854931" ] },
-      "time" : 1265326891,
-      "description" : "Pneumonia Vaccine" } ] }
+      "time" : 1286382415,
+      "description" : "Influenza Vaccine" } ] }

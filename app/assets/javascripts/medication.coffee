@@ -62,32 +62,16 @@ class hQuery.FulFillment
 
 
 ###*
-This class represents a medication entry for a patient.  
-
-@class 
+@class represents a medication entry for a patient.
+@augments hQuery.CodedEntry
 @exports Medication as hQuery.Medication
 ### 
-class hQuery.Medication 
-  ###*
-  @param {Object} A hash representing the Medication
-  @constructs
-  ###
-  constructor: (@json) ->
-    
+class hQuery.Medication  extends hQuery.CodedEntry
   ###*
   @returns {String} 
   ####
   freeTextSig: -> @json['freeTextSig']
 
-  ###*
-  @returns {Array}  
-   Used to indicate actual or intended start and stop date of a medication,
-   and frequency of administration.
-  ###
-  effectiveTime: ->
-    for t in @json['effectiveTime']
-      hQuery.dateFromUtcSeconds t   
-  
   ###*
   @returns {CodedValue}  Contains routeCode or adminstrationUnitCode information.
     Route code shall have a a value drawn from FDA route of adminstration,
