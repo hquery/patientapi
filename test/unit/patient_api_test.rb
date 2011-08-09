@@ -50,6 +50,7 @@ class PatientApiTest  < Test::Unit::TestCase
   
   def test_medications
     assert_equal 1, @context.eval('patient.medications().length')
-    assert_equal 1, @context.eval('patient.medications().match({"RxNorm": ["854931"]})')
+    assert_equal 24, @context.eval('patient.medications()[0].administrationTiming().period().value()')
+    assert_equal 1, @context.eval('patient.medications().match({"RxNorm": ["89905"]})')
   end
 end

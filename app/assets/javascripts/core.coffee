@@ -14,6 +14,15 @@ hQuery.dateFromUtcSeconds = (utcSeconds) ->
   new Date utcSeconds * 1000
 
 ###*
+@class Scalar - a representation of a unit and value
+@exports Scalar as hQuery.Scalar
+###
+class hQuery.Scalar
+  constructor: (@json) ->
+  unit: -> @json['unit']
+  value: -> @json['value']
+
+###*
 @class A code with its corresponding code system
 @exports CodedValue as hQuery.CodedValue 
 ###

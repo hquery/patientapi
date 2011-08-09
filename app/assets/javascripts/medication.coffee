@@ -16,30 +16,37 @@ class hQuery.MedicationInformation
   An array of hQuery.CodedValue describing the medication
   @returns {Array}
   ####
-  codedProduct: -> hQuery.createCodedValues @json['codedProducts']
-  lotNumber: -> @json['lotNumber']
-  brandName: -> @json['brandName']
+  codedProduct: -> hQuery.createCodedValues @json['codes']
+  freeTextProductName: -> @json['description']
+  codedBrandName: -> @json['codedBrandName']
+  freeTextBrandName: -> @json['brandName']
   drugManufacturer: -> 
     if(@json['drugManufacturer']) 
       new hQuery.Organization(@json['drugManufacturer'])
+
 ###*
-@class Dose - a medications dose information  , unit and value
-@exports Dose as hQuery.Dose
+@class AdministrationTiming - the 
+@exports AdministrationTiming as hQuery.AdministrationTiming
 ###
-class hQuery.Dose
+class hQuery.AdministrationTiming
   constructor: (@json) ->
-  unit: -> @json['unit']
-  value: -> @json['value']
-  
-  
+
+  ###*
+  Provides the period of medication administration as a Scalar. An example
+  Scalar that would be returned would be with value = 8 and units = 8. This would
+  mean that the medication should be taken every 8 hours.
+  @returns {hQuery.Scalar}
+  ###
+  period: -> new hQuery.Scalar @json['period']
+
 ###*
 @class DoseRestriction -  restrictions on the medications dose, represented by a upper and lower dose
 @exports DoseRestriction as hQuery.DoseRestriction
 ###
 class hQuery.DoseRestriction
   constructor: (@json) ->
-  numerator: -> new hQuery.Dose @json['numerator']
-  denominator: -> new hQuery.Dose @json['denominator']
+  numerator: -> new hQuery.Scalar @json['numerator']
+  denominator: -> new hQuery.Scalar @json['denominator']
   
 
 ###*
@@ -53,7 +60,7 @@ class hQuery.FulFillment
 
  provider:-> new hQuery.Actor @json['provider']
 
- quantity: -> new hQuery.Dose @json['quantity']
+ quantity: -> new hQuery.Scalar @json['quantity']
 
  prescriptionNumber: -> @json['prescriptionNumber']
 
@@ -72,6 +79,23 @@ class hQuery.Medication  extends hQuery.CodedEntry
   ####
   freeTextSig: -> @json['freeTextSig']
 
+
+  ###*
+  The actual or intended start of a medication. Slight deviation from greenCDA for C32 since
+  it combines this with medication stop
+  @returns {Date}
+  ###
+  indicateMedicationStart: -> hQuery.dateFromUtcSeconds @json['start_time']
+  
+  ###*
+  The actual or intended stop of a medication. Slight deviation from greenCDA for C32 since
+  it combines this with medication start
+  @returns {Date}
+  ###
+  indicateMedicationStop: -> hQuery.dateFromUtcSeconds @json['end_time']
+
+  administrationTiming: -> new hQuery.AdministrationTiming @json['administrationTiming']
+
   ###*
   @returns {CodedValue}  Contains routeCode or adminstrationUnitCode information.
     Route code shall have a a value drawn from FDA route of adminstration,
@@ -85,9 +109,9 @@ class hQuery.Medication  extends hQuery.CodedEntry
   route: -> new hQuery.CodedValue @json['route'].codeSystem, @json['route'].code 
  
   ###*
-  @returns {Dose} the dose 
+  @returns {hQuery.Scalar} the dose 
   ###
-  dose: -> new hQuery.Dose @json['dose']
+  dose: -> new hQuery.Scalar @json['dose']
  
   ###*
   @returns {CodedValue}
@@ -106,7 +130,7 @@ class hQuery.Medication  extends hQuery.CodedEntry
   ###
   deliveryMethod: -> new hQuery.CodedValue @json['deliveryMethod'].codeSystem, @json['deliveryMethod'].code 
 
-  medicationInformation: -> new hQuery.MedicationInformation @json['medicationInformation']
+  medicationInformation: -> new hQuery.MedicationInformation @json
  
   ###*
   @returns {CodedValue} Indicates whether this is an over the counter or prescription medication

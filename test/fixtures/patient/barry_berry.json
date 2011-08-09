@@ -39,7 +39,11 @@ var barry = { "first" : "Barry",
     "description" : "Colonscopy" } ],
   "results" : [],
   "medications" : [ 
-    { "codes" : { "RxNorm" : [ 
-          "854931" ] },
+    { "administrationTiming": {
+        "period": {"unit": "h", "value": 24}
+      },
+      "freeTextSig" : "Take your vitamins!",
+      "codes" : { "RxNorm" : [ 
+          "89905" ] },
       "time" : 1286382415,
-      "description" : "Influenza Vaccine" } ] }
+      "description" : "Centrum Silver" } ] }
