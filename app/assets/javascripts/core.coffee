@@ -8,7 +8,7 @@ Converts a a number in UTC Seconds since the epoch to a date.
 @param {number} utcSeconds seconds since the epoch in UTC
 @returns {Date}
 @function
-@exports dateFromUtcSeconds as hQuery.dateFromUtcSeconds 
+@exports dateFromUtcSeconds as hQuery.dateFromUtcSeconds
 ###
 hQuery.dateFromUtcSeconds = (utcSeconds) ->
   new Date utcSeconds * 1000
@@ -24,7 +24,7 @@ class hQuery.Scalar
 
 ###*
 @class A code with its corresponding code system
-@exports CodedValue as hQuery.CodedValue 
+@exports CodedValue as hQuery.CodedValue
 ###
 class hQuery.CodedValue
   ###*
@@ -58,14 +58,46 @@ class hQuery.CodedValue
     return false
 
 ###*
-@class an Address for a person or organization 
-@exports Address as hQuery.Address 
+Status as defined by value set 2.16.840.1.113883.5.14,
+the ActStatus vocabulary maintained by HL7
+
+@class Status
+@augments hQuery.CodedEntry
+@exports Status as hQuery.Status
+###
+class hQuery.Status extends hQuery.CodedValue
+  NORMAL = "normal"
+  ABORTED = "aborted"
+  ACTIVE = "active"
+  CANCELLED = "cancelled"
+  COMPLETED = "completed"
+  HELD = "held"
+  NEW = "new"
+  SUSPENDED = "suspended"
+  NULLIFIED = "nullified"
+  OBSOLETE = "obsolete"
+
+  isNormal: -> @c is NORMAL
+  isAborted: -> @c is ABORTED
+  isActive: -> @c is ACTIVE
+  isCancelled: -> @c is CANCELLED
+  isCompleted: -> @c is COMPLETED
+  isHeld: -> @c is HELD
+  isNew: -> @c is NEW
+  isSuspended: -> @c is SUSPENDED
+  isNullified: -> @c is NULLIFIED
+  isObsolete: -> @c is OBSOLETE
+
+
+###*
+@class an Address for a person or organization
+@exports Address as hQuery.Address
 ###
 class hQuery.Address
   constructor: (@json) ->
   ###*
   @returns {String} the street address
-  ###   
+  ###
   streetAddress: -> @json['streetAddress']
   ###*
   @returns {String} the city
@@ -86,43 +118,43 @@ class hQuery.Address
 
 
 ###*
-@class An object that describes a means to contact an entity.  This is used to represent 
+@class An object that describes a means to contact an entity.  This is used to represent
 phone numbers, email addresses,  instant messaging accounts etc.
-@exports Telecom as hQuery.Telecom   
+@exports Telecom as hQuery.Telecom
 ###
 class hQuery.Telecom
   constructor: (@json) ->
-  
+
   ###*
   @returns {String} the type of telecom entry, phone, sms, email ....
-  ###  
+  ###
   type: -> @json['type']
-  
+
   ###*
   @returns {String} the value of the entry -  the actual phone number , email address , ....
-  ###  
+  ###
   value: -> @json['value']
-  
+
   ###*
   @returns {String} the use of the entry. Is it a home, office, .... type of contact
-  ###  
+  ###
   use: -> @json['use']
-  
+
   ###*
   @returns {Boolean} is this a preferred form of contact
-  ###  
+  ###
   preferred: -> @json['preferred']
 
 
 ###*
 @class an object that describes a person.  includes a persons name, addresses, and contact information
-@exports Person as hQuery.Person 
+@exports Person as hQuery.Person
 ###
 class hQuery.Person
   constructor: (@json) ->
   ###*
    @returns {String} the given name of the person
-  ###  
+  ###
   given: -> @json['given']
   ###*
    @returns {String} the last/family name of the person
@@ -144,21 +176,21 @@ class hQuery.Person
 
 ###*
 @class an actor is either a person or an organization
-@exports Actor as hQuery.Actor 
+@exports Actor as hQuery.Actor
 ###
 class hQuery.Actor
   constructor: (@json) ->
   person: ->
-    if @json['person'] 
+    if @json['person']
       new hQuery.Person @json['person']
   organization: ->
     if @json['organization']
       new hQuery.Organization @json['organization']
-      
+
 
 ###*
 @class an Organization
-@exports Organization as hQuery.Organization 
+@exports Organization as hQuery.Organization
 ###
 class hQuery.Organization
   constructor: (@json) ->
@@ -166,38 +198,38 @@ class hQuery.Organization
 
 ###*
 @class represents a DateRange in the form of hi and low date values.
-@exports DateRange as hQuery.DateRange 
+@exports DateRange as hQuery.DateRange
 ###
 class hQuery.DateRange
   constructor: (@json) ->
   hi: ->
-    if @json['hi'] 
-      dateFromUtcSeconds @json['hi'] 
+    if @json['hi']
+      dateFromUtcSeconds @json['hi']
   low: ->
-    dateFromUtcSeconds @json['low'] 
-    
+    dateFromUtcSeconds @json['low']
+
 ###*
-@class Class used to describe an entity that is providing some form of information.  This does not mean that they are 
+@class Class used to describe an entity that is providing some form of information.  This does not mean that they are
 providing any treatment just that they are providing information.
-@exports Informant as hQuery.Informant 
-###    
+@exports Informant as hQuery.Informant
+###
 class hQuery.Informant
   constructor: (@json) ->
   ###*
   an array of hQuery.Person objects as points of contact
-  @returns {Array}  
+  @returns {Array}
   ###
   contacts: ->
-    for contact in @json['contacts'] 
+    for contact in @json['contacts']
       new hQuery.Person contact
   ###*
    @returns {hQuery.Organization} the organization providing the information
-  ###    
-  organization: -> new hQuery.Organization @json['organization']    
-    
+  ###
+  organization: -> new hQuery.Organization @json['organization']
+
 ###*
 @class
-@exports CodedEntry as hQuery.CodedEntry 
+@exports CodedEntry as hQuery.CodedEntry
 ###
 class hQuery.CodedEntry
   constructor: (@json) ->
@@ -219,13 +251,13 @@ class hQuery.CodedEntry
   @returns {String}
   ###
   freeTextType: -> @json['description']
-  
+
   ###*
   Unique identifier for this coded entry
   @returns {String}
   ###
   id: -> @json['id']
-  
+
   ###*
   Returns true if any of this entry's codes match a code in the supplied codeSet.
   @param {Object} codeSet a hash with code system names as keys and an array of codes as values
@@ -245,7 +277,7 @@ entries based on codes and date ranges
 class hQuery.CodedEntryList extends Array
   constructor: ->
     @push arguments...
-    
+
   ###*
   Return the number of entries that match the
   supplied code set where those entries occur between the supplied time bounds

@@ -2,48 +2,60 @@ var barry = { "first" : "Barry",
   "last" : "Berry",
   "gender" : "M",
   "birthdate" : -223262033,
-  "encounters" : [ 
-    { "codes" : { "CPT" : [ 
+  "encounters" : [
+    { "codes" : { "CPT" : [
           "99201" ] },
       "time" : 1268042997,
-      "description" : "Outpatient encounter" }, 
-    { "codes" : { "CPT" : [ 
+      "description" : "Outpatient encounter" },
+    { "codes" : { "CPT" : [
           "99201" ] },
       "time" : 1281484083,
       "description" : "Outpatient encounter" } ],
-  "conditions" : [ 
-    { "codes" : { "SNOMED-CT" : [ 
+  "conditions" : [
+    { "codes" : { "SNOMED-CT" : [
           "105539002" ] },
       "time" : 1269762692,
-      "description" : "Tobacco Non-user" }, 
-    { "codes" : { "SNOMED-CT" : [ 
+      "description" : "Tobacco Non-user" },
+    { "codes" : { "SNOMED-CT" : [
           "109838007" ] },
       "time" : 1263167138,
       "description" : "Colorectal Cancer" } ],
-  "vital_signs" : [ 
-    { "codes" : { "SNOMED-CT" : [ 
+  "vital_signs" : [
+    { "codes" : { "SNOMED-CT" : [
           "105539002" ] },
       "time" : 1263168508,
       "description" : "Tobacco Non-user",
       "status": "completed" },
-    { "codes" : { "SNOMED-CT" : [ 
+    { "codes" : { "SNOMED-CT" : [
           "314443004" ] },
       "time" : 1263168508,
       "description" : "Systolic BP",
       "status": "completed",
       "value": {"scalar": 132, "units": "mm[Hg]"} } ],
   "procedures" : [
-    { "codes" : { "CPT" : [ 
+    { "codes" : { "CPT" : [
         "44388" ] },
     "time" : 1073238725,
     "description" : "Colonscopy" } ],
   "results" : [],
-  "medications" : [ 
+  "medications" : [
     { "administrationTiming": {
         "period": {"unit": "h", "value": 24}
       },
       "freeTextSig" : "Take your vitamins!",
-      "codes" : { "RxNorm" : [ 
+      "codes" : { "RxNorm" : [
           "89905" ] },
+      "dose" : {"unit": "tablet", "value": 1},
       "time" : 1286382415,
-      "description" : "Centrum Silver" } ] }
+      "description" : "Multivitamin",
+      "brandName" : "Centrum Silver",
+      "route": {"code": "C38288", "codeSystem": "NCI Thesaurus"},
+      "typeOfMedication": {"code": "329505003", "codeSystem": "SNOMED-CT"},
+      "statusOfMedication": {"code": "55561003", "codeSystem": "SNOMED-CT"},
+      "fulfillmentHistory": [{"dispenseDate": 1073238725, "fillNumber": 5,
+                              "quantityDispensed": {"unit": "tablet", "value": 30},
+                              "provider": {"person": {"given": "Bobby", "last": "Tables"}}}],
+      "orderInformation": [{"orderDateTime": 1073238725, "fills": 20,
+                              "quantityOrdered": {"unit": "tablet", "value": 30}}]
+    }
+   ] }
