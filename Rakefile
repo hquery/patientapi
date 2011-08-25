@@ -2,6 +2,7 @@ require 'rake'
 require 'rake/testtask'
 require 'sprockets'
 require 'tilt'
+
 task :default => [:test_units]
 $LOAD_PATH << File.expand_path("../test",__FILE__)
 desc "Run basic tests"
@@ -15,8 +16,8 @@ Rake::TestTask.new("test_units") { |t|
 namespace :doc do
   task :generate_js do
     ctx = Sprockets::Environment.new(File.expand_path("../", __FILE__))
-     Tilt::CoffeeScriptTemplate.default_bare=true 
-    ctx.paths << "app/assets/javascripts"
+    Tilt::CoffeeScriptTemplate.default_bare=true 
+    ctx.append_path "app/assets/javascripts"
     api = ctx.find_asset('patient')
     
     Dir.mkdir('tmp') unless Dir.exists?( 'tmp')
