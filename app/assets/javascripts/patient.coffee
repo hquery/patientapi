@@ -4,6 +4,7 @@
 # =require encounter.coffee
 # =require procedure.coffee
 # =require result.coffee
+# =require immunization.coffee
 ###*
 @namespace scoping into the hquery namespace
 ###
@@ -70,7 +71,7 @@ class hQuery.Patient
         list.push(new hQuery.Medication(medication))
     list
       
-      
+
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link Condition} objects
   ###
@@ -110,15 +111,15 @@ class hQuery.Patient
       for vital in @json['vital_signs']
         list.push(new hQuery.Result(vital))
     list
-  
-  ###*      
+
+  ###*
   @returns {hQuery.CodedEntryList} A list of {@link Immunization} objects
   ###
-  ###*
-  immunization: ->
+  immunizations: ->
     list = new hQuery.CodedEntryList
-    if @json['immunization']
-      for immunization in @json['immunization']
+    if @json['immunizations']
+      for immunization in @json['immunizations']
         list.push(new hQuery.Immunization(immunization))
     list
-  ### 
+
+

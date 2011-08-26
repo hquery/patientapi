@@ -6,11 +6,15 @@ var barry = { "first" : "Barry",
     { "codes" : { "CPT" : [
           "99201" ] },
       "time" : 1268042997,
-      "description" : "Outpatient encounter" },
+      "description" : "Outpatient encounter",
+      "id" : "OP12346"
+},
     { "codes" : { "CPT" : [
           "99201" ] },
       "time" : 1281484083,
-      "description" : "Outpatient encounter" } ],
+      "description" : "Outpatient encounter",
+      "id" : "OP12345"
+} ],
   "conditions" : [
     { "codes" : { "SNOMED-CT" : [
           "105539002" ] },
@@ -38,6 +42,13 @@ var barry = { "first" : "Barry",
     "time" : 1073238725,
     "description" : "Colonscopy" } ],
   "results" : [],
+  "immunizations" : [{
+  "codes" : { "CDCCVX" : [
+          "03" ] },
+  "description" : "MMR",
+  "medicationSeriesNumber" : {"unit": "", "value": 2},
+  "comment" : "vaccine"
+  }],
   "medications" : [
     { "administrationTiming": {
         "period": {"unit": "h", "value": 24}
@@ -59,3 +70,4 @@ var barry = { "first" : "Barry",
                               "quantityOrdered": {"unit": "tablet", "value": 30}}]
     }
    ] }
+
