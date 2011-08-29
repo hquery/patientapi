@@ -96,25 +96,21 @@ class hQuery.Status extends hQuery.CodedValue
 class hQuery.Address
   constructor: (@json) ->
   ###*
-  @returns {String} the street address
+  @returns {Array[String]} the street addresses
   ###
-  streetAddress: -> @json['streetAddress']
+  street: -> @json['street']
   ###*
   @returns {String} the city
   ###
   city: -> @json['city']
   ###*
-  @returns {String} the State or province
+  @returns {String} the State
   ###
-  stateOrProvince: -> @json['stateOrProvince']
+  state: -> @json['state']
   ###*
-  @returns {String} the zip code
+  @returns {String} the postal code
   ###
-  zip: -> @json['zip']
-  ###*
-  @returns {String} the country
-  ###
-  country: -> @json['country']
+  postalCode: -> @json['postalCode']
 
 
 ###*
@@ -155,17 +151,23 @@ class hQuery.Person
   ###*
    @returns {String} the given name of the person
   ###
-  given: -> @json['given']
+  given: -> @json['first']
+
   ###*
    @returns {String} the last/family name of the person
-   ###
+  ###
   last: -> @json['last']
+
   ###*
-   @returns {Array} an array of {@link hQuery.Address} objects associated with the person
-   ###
+   @returns {Array} an array of {@link hQuery.Address} objects associated with the patient
+  ###
   addresses: ->
-    for address in @json['addresses']
-      new hQuery.Address address
+    list = []
+    if @json['addresses']
+      for address in @json['addresses']
+        list.push(new hQuery.Address(address))
+    list
+    
   ###*
   @returns {Array} an array of {@link hQuery.Telecom} objects associated with the person
   ###

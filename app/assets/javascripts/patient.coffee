@@ -13,28 +13,14 @@ this.hQuery ||= {}
 
 ###*
 @class Representation of a patient
+@augments hQuery.Person
 @exports Patient as hQuery.Patient
 ###
-class hQuery.Patient
-  ###*
-  @constructor
-  ###
-  constructor: (@json) ->
-
+class hQuery.Patient extends hQuery.Person
   ###*
   @returns {String} containing M or F representing the gender of the patient
   ###
   gender: -> @json['gender']
-
-  ###*
-  @returns {String} containing the patient's given name
-  ###
-  given: -> @json['first']
-
-  ###*
-  @returns {String} containing the patient's family name
-  ###
-  family: -> @json['last']
 
   ###*
   @returns {Date} containing the patient's birthdate
@@ -50,7 +36,7 @@ class hQuery.Patient
     oneDay = 24*60*60*1000;
     oneYear = 365*oneDay;
     return (date.getTime()-this.birthtime().getTime())/oneYear;
-
+    
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link hQuery.Encounter} objects
   ###
