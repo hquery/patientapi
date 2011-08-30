@@ -5,6 +5,25 @@ this.hQuery ||= {}
 
 
 # =require core.coffee
+
+###*
+@class ReasonForVisit
+@exports ReasonForVisit as hQuery.ReasonForVisit
+###
+class hQuery.ReasonForVisit
+  constructor: (@json) ->
+
+  ###*
+  @returns {String}
+  ###
+  reasonText: -> @json['reasonText']
+  
+  ###*
+  @returns {CodedValue}
+  ###
+  reasonCode: -> new hQuery.CodedValue @json['reasonCode']['code'], @json['reasonCode']['codeSystem']
+   
+	
 ###*
 An Encounter is an interaction, regardless of the setting, between a patient and a
 practitioner who is vested with primary responsibility for diagnosing, evaluating,
@@ -18,4 +37,29 @@ practitioner
 @exports Encounter as hQuery.Encounter 
 ###
 class hQuery.Encounter extends hQuery.CodedEntry
+	
+  ###*
+  @returns {String}
+  ####
+  dischargeDisp: -> @json['dischargeDisp']
+  
+  ###*
+  @returns {CodedValue}
+  ###
+  admitType: -> new hQuery.CodedValue @json['admitType']['code'], @json['admitType']['codeSystem']
+  
+  ###*
+  @returns {hQuery.Person}
+  ###
+  encounterProvider: -> new hQuery.Person @json
+  
+  ###*
+  @returns {hQuery.DateRange}
+  ###
+  encounterDuration: -> new hQuery.DateRange @json
+  
+  ###*
+  @returns {hQuery.ReasonForVisit}
+  ###
+  reasonForVisit: -> new hQuery.ReasonForVisit @json
   

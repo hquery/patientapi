@@ -206,9 +206,9 @@ class hQuery.DateRange
   constructor: (@json) ->
   hi: ->
     if @json['hi']
-      dateFromUtcSeconds @json['hi']
+      hQuery.dateFromUtcSeconds @json['hi']
   low: ->
-    dateFromUtcSeconds @json['low']
+    hQuery.dateFromUtcSeconds @json['low']
 
 ###*
 @class Class used to describe an entity that is providing some form of information.  This does not mean that they are

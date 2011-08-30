@@ -23,8 +23,15 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 2, @context.eval('patient.encounters().length')
     assert_equal '99201', @context.eval('patient.encounters()[0].type()[0].code()')
     assert_equal 'CPT', @context.eval('patient.encounters()[0].type()[0].codeSystemName()')
-   #assert @context.eval('patient.encounters()[0].includesCodeFrom({"RxNorm": ["1","2"], "CPT": ["44388", "99201"]})')
-    #assert_equal 'OP12345', @context.eval('patient.encounters()[0].id()')
+    assert_equal 'OP12345', @context.eval('patient.encounters()[0].id()')
+    assert_equal 'Outpatient encounter', @context.eval('patient.encounters()[0].freeTextType()')
+    assert_equal 'Home', @context.eval('patient.encounters()[0].dischargeDisp()')
+    assert_equal '04', @context.eval('patient.encounters()[0].admitType().code()')
+    assert_equal 'General Hospital', @context.eval('patient.encounters()[0].encounterProvider().last()')
+    assert_equal 2005, @context.eval('patient.encounters()[0].encounterDuration().low().getFullYear()')
+    assert_equal 2011, @context.eval('patient.encounters()[0].encounterDuration().hi().getFullYear()')
+    assert_equal 'PCP referred', @context.eval('patient.encounters()[0].reasonForVisit().reasonText()')
+    assert_equal 'xx', @context.eval('patient.encounters()[0].reasonForVisit().reasonCode().code()')
   end
 
   def test_procedures

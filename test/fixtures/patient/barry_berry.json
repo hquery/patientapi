@@ -21,8 +21,22 @@ var barry = {
         ]
       },
       "time": 1268042997,
-      "description": "Outpatient encounter"
-    },
+      "description": "Outpatient encounter",
+      "id": "OP12345",
+      "dischargeDisp": "Home",
+      "admitType": {
+        "code": "04",
+        "codeSystem": "regular"
+      },
+	"last": "General Hospital",
+	"low": 1124956803,
+	"hi": 1314259203,
+	"reasonText" : "PCP referred",
+	"reasonCode": {
+          "code": "xx",
+          "codeSystem": "Internal"
+      }
+	},
     {
       "codes": {
         "CPT": [
