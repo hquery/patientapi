@@ -50,6 +50,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'SNOMED-CT', @context.eval('patient.vitalSigns()[0].type()[0].codeSystemName()')
     assert_equal 'completed', @context.eval('patient.vitalSigns()[0].status()')
     assert_equal 132, @context.eval('patient.vitalSigns()[1].value()["scalar"]')
+    assert_equal '46680005', @context.eval('patient.vitalSigns()[1].resultType().code()')
   end
 
   def test_conditions

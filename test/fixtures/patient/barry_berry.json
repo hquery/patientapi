@@ -79,6 +79,10 @@ var barry = {
       "status": "completed"
     },
     {
+       "resultType": {
+	 "code": "46680005",
+	 "codeSystem": "SNOMED-CT"
+	},
       "codes": {
         "SNOMED-CT": [
           "314443004"
@@ -90,7 +94,8 @@ var barry = {
       "value": {
         "scalar": 132,
         "units": "mm[Hg]"
-      }
+      },      
+
     }
   ],
   "procedures": [
