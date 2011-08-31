@@ -51,6 +51,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'completed', @context.eval('patient.vitalSigns()[0].status()')
     assert_equal 132, @context.eval('patient.vitalSigns()[1].value()["scalar"]')
     assert_equal '46680005', @context.eval('patient.vitalSigns()[1].resultType().code()')
+    assert_equal 'BP taken sitting', @context.eval('patient.vitalSigns()[1].comment()')
   end
 
   def test_conditions

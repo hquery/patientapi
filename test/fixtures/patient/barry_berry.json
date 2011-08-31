@@ -84,8 +84,8 @@ var barry = {
 	 "codeSystem": "SNOMED-CT"
 	},
       "codes": {
-        "SNOMED-CT": [
-          "314443004"
+        "LOINC": [
+          "8480-6"
         ]
       },
       "time": 1263168508,
@@ -94,8 +94,8 @@ var barry = {
       "value": {
         "scalar": 132,
         "units": "mm[Hg]"
-      },      
-
+      },
+     "comment": "BP taken sitting"      
     }
   ],
   "procedures": [

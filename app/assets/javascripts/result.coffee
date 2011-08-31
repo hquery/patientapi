@@ -46,3 +46,8 @@ Summary of CCD value sets), used to categorize a result into one of several comm
   ###
   referenceRange: -> @json['referenceRange']
   
+  ###*
+  @returns {String}
+  ###
+  comment: -> @json['comment']
+  
