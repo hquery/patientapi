@@ -108,9 +108,7 @@ var barry = {
   "immunizations" : [
     {
       "codes" : {
-        "CDCCVX" : [
-          "03" 
-  ] 
+        "CVX" : [ "03" ]
       },
       "description" : "MMR",
       "medicationSeriesNumber" : {"unit": "", "value": 2},
