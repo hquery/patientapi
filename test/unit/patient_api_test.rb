@@ -75,11 +75,11 @@ class PatientApiTest  < Test::Unit::TestCase
   end
   
   def test_immunizations
-    assert_equal 1, @context.eval('patient.immunizations().length')
-    assert @context.eval('patient.immunizations().match({"CDCCVX": ["03"]})')
+    assert_equal 2, @context.eval('patient.immunizations().length')
+    assert @context.eval('patient.immunizations().match({"CVX": ["03"]})')
     assert_equal 'MMR', @context.eval('patient.immunizations()[0].medicationInformation().freeTextProductName()')
     assert_equal 2, @context.eval('patient.immunizations()[0].medicationSeriesNumber().value()')
     assert_equal 'vaccine', @context.eval('patient.immunizations()[0].comment()')
-    #assert @context.eval('patient.immunizations()[0].noImmunization().isImmune()')
+    assert @context.eval('patient.immunizations()[1].refusalReason().isImmune()')
   end
 end
