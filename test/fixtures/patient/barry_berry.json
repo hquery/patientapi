@@ -113,6 +113,15 @@ var barry = {
       "description" : "MMR",
       "medicationSeriesNumber" : {"unit": "", "value": 2},
       "comment" : "vaccine"
+    },
+    {
+      "codes" : {
+        "CVX" : [ "04" ]
+      },
+      "description" : "Something",
+      "refusalInd": true,
+      "refusalReason": {"code": "IMMUNE", "codeSystem": "HL7 No Immunization Reason"},
+      "comment" : "patient invincible"
     }
   ],
   "medications": [
