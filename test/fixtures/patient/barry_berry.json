@@ -28,15 +28,15 @@ var barry = {
         "code": "04",
         "codeSystem": "regular"
       },
-	"last": "General Hospital",
-	"low": 1124956803,
-	"hi": 1314259203,
-	"reasonText" : "PCP referred",
-	"reasonCode": {
-          "code": "xx",
-          "codeSystem": "Internal"
-      }
-	},
+      "last": "General Hospital",
+      "low": 1124956803,
+      "hi": 1314259203,
+      "reasonText" : "PCP referred",
+      "reasonCode": {
+              "code": "xx",
+              "codeSystem": "Internal"
+          }
+  },
     {
       "codes": {
         "CPT": [
@@ -110,7 +110,7 @@ var barry = {
       "codes" : {
         "CDCCVX" : [
           "03" 
-	] 
+  ] 
       },
       "description" : "MMR",
       "medicationSeriesNumber" : {"unit": "", "value": 2},
