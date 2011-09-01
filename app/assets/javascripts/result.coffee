@@ -22,7 +22,7 @@ class hQuery.Result extends hQuery.CodedEntry
   (e.g. Hematology, Chemistry, Nuclear Medicine).
   @returns {CodedValue}
   ###
-  resultType: -> new hQuery.CodedValue @json['resultType']['code'], @json['resultType']['codeSystem']
+  resultType: -> this.type()
    
   ###*
   A status from the HL7 ActStatusNormal vocabulary

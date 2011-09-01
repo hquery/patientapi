@@ -50,7 +50,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'SNOMED-CT', @context.eval('patient.vitalSigns()[0].type()[0].codeSystemName()')
     assert_equal 'completed', @context.eval('patient.vitalSigns()[0].status()')
     assert_equal 132, @context.eval('patient.vitalSigns()[1].value()["scalar"]')
-    assert_equal '46680005', @context.eval('patient.vitalSigns()[1].resultType().code()')
+    assert_equal '8480-6', @context.eval('patient.vitalSigns()[1].resultType()[0].code()')
     assert_equal 'BP taken sitting', @context.eval('patient.vitalSigns()[1].comment()')
   end
   
@@ -58,6 +58,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 1, @context.eval('patient.results().length')
     assert_equal '104150001', @context.eval('patient.results()[0].type()[0].code()')
     assert_equal 'SNOMED-CT', @context.eval('patient.results()[0].type()[0].codeSystemName()')
+    assert_equal 'SNOMED-CT', @context.eval('patient.results()[0].resultType()[0].codeSystemName()')
     assert_equal 'completed', @context.eval('patient.results()[0].status()')
     assert_equal 'Negative', @context.eval('patient.results()[0].comment()')
   end

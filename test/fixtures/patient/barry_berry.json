@@ -79,10 +79,6 @@ var barry = {
       "status": "completed"
     },
     {
-       "resultType": {
-	 "code": "46680005",
-	 "codeSystem": "SNOMED-CT"
-	},
       "codes": {
         "LOINC": [
           "8480-6"
@@ -95,7 +91,7 @@ var barry = {
         "scalar": 132,
         "units": "mm[Hg]"
       },
-     "comment": "BP taken sitting"      
+     "comment": "BP taken sitting"
     }
   ],
   "procedures": [
