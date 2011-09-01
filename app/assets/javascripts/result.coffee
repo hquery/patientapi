@@ -18,8 +18,8 @@ class hQuery.Result extends hQuery.CodedEntry
 
   ###*
   ASTM CCR defines a restricted set of required result Type codes (see ResultTypeCode in section 7.3
-Summary of CCD value sets), used to categorize a result into one of several commonly accepted values
-(e.g. “Hematology”, “Chemistry”, “Nuclear Medicine”).
+  Summary of CCD value sets), used to categorize a result into one of several commonly accepted values
+  (e.g. Hematology, Chemistry, Nuclear Medicine).
   @returns {CodedValue}
   ###
   resultType: -> new hQuery.CodedValue @json['resultType']['code'], @json['resultType']['codeSystem']
