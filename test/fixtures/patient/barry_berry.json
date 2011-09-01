@@ -109,7 +109,17 @@ var barry = {
       "description": "Colonscopy"
     }
   ],
-  "results": [],
+  "results": [    {
+      "codes": {
+        "SNOMED-CT": [
+          "104150001"
+        ]
+      },
+      "time": 1263168508,
+      "description": "Sucralose hemolysis test",
+      "status": "completed",
+      "comment": "Negative"
+    }],
   "immunizations" : [
     {
       "codes" : {
