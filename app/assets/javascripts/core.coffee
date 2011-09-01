@@ -196,6 +196,33 @@ class hQuery.Actor
 ###
 class hQuery.Organization
   constructor: (@json) ->
+  
+  ###*
+  @returns {String} the id for the organization
+  ###
+  organizationId: -> @json['organizationId']
+  
+  ###*
+  @returns {String} the name of the organization
+  ###
+  organizationName: -> @json['organizationName']
+  
+  ###*
+  @returns {Array} an array of {@link hQuery.Address} objects associated with the organization
+  ###
+  addresses: ->
+    list = []
+    if @json['addresses']
+      for address in @json['addresses']
+        list.push(new hQuery.Address(address))
+    list
+    
+  ###*
+  @returns {Array} an array of {@link hQuery.Telecom} objects associated with the organization
+  ###
+  telecoms: ->
+    for tel in @json['telecoms']
+      new hQuery.Telecom tel
 
 
 ###*
