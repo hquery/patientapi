@@ -1,7 +1,7 @@
 source :rubygems
 
 gem 'execjs'
-gem 'sprockets', "~> 2.0.0.beta.14"
+gem 'sprockets'
 gem 'coffee-script'
 gem 'uglifier'
 gem 'rake'

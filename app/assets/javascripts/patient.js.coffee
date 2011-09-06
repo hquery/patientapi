@@ -1,10 +1,10 @@
-# =require core.coffee
-# =require medication.coffee
-# =require condition.coffee
-# =require encounter.coffee
-# =require procedure.coffee
-# =require result.coffee
-# =require immunization.coffee
+# =require core.js.coffee
+# =require medication.js.coffee
+# =require condition.js.coffee
+# =require encounter.js.coffee
+# =require procedure.js.coffee
+# =require result.js.coffee
+# =require immunization.js.coffee
 ###*
 @namespace scoping into the hquery namespace
 ###
