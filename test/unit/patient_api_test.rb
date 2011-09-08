@@ -92,4 +92,14 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'vaccine', @context.eval('patient.immunizations()[0].comment()')
     assert @context.eval('patient.immunizations()[1].refusalReason().isImmune()')
   end
+  
+  def test_allergies
+    assert_equal 1, @context.eval('patient.allergies().length')
+    assert_equal 'Carries Epipen',@context.eval('patient.allergies()[0].comment()')
+    assert_equal 1, @context.eval('patient.allergies().match({"SNOMED-CT": ["39579001"]})')
+    assert_equal 'Anaphalactic reaction to peanuts', @context.eval('patient.allergies()[0].freeTextType()')
+    assert_equal '414285001', @context.eval('patient.allergies()[0].reaction().code()')
+    assert_equal '371924009', @context.eval('patient.allergies()[0].severity().code()')
+  end
+  
 end

@@ -5,6 +5,8 @@
 # =require procedure.js.coffee
 # =require result.js.coffee
 # =require immunization.js.coffee
+# =require allergy.js.coffee
+
 ###*
 @namespace scoping into the hquery namespace
 ###
@@ -107,5 +109,17 @@ class hQuery.Patient extends hQuery.Person
       for immunization in @json['immunizations']
         list.push(new hQuery.Immunization(immunization))
     list
+    
+    
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link Allergy} objects
+  ###
+  allergies: ->
+    list = new hQuery.CodedEntryList
+    if @json['allergies']
+      for allergy in @json['allergies']
+        list.push(new hQuery.Allergy(allergy))
+    list
+
 
 

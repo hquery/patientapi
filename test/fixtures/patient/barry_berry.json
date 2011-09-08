@@ -195,6 +195,23 @@ var barry = {
         }
       ]
     }
+  ],
+  "allergies": [
+  {
+  "codes" : {
+        "SNOMED-CT" : [ "39579001" ]},
+      "time": 1269762692,
+      "description": "Anaphalactic reaction to peanuts",
+      "comment": "Carries Epipen",
+      "reaction":{
+        "code": "414285001",
+        "codeSystem": "SNOMED-CT"
+      },
+      "severity":{
+        "code": "371924009",
+        "codeSystem": "SNOMED-CT"
+      }
+    }
   ]
 };
 
