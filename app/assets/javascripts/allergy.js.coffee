@@ -27,6 +27,11 @@ class hQuery.Allergy  extends hQuery.CodedEntry
   ###
   product: -> hQuery.createCodedValue @json['product']['code'], @json['product']['codeSystem']
 
+  ###*
+  Date of allergy or adverse event
+  @returns{Date}
+  ###
+  adverseEventDate: -> dateFromUtcSeconds @json['adverseEventDate']
 
   ###*
   Adverse event types SHALL be coded as specified in HITSP/C80 Section 2.2.3.4.2 Allergy/Adverse Event Type
