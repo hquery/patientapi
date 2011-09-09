@@ -8,7 +8,7 @@ Install Instructions
 
 There is no need to install the patientapi directly, it will be pulled into the [hQuery Gateway](http://github.com/hquery/query-gateway) by Bundler during an install.
 
-See the [query composer](http://github.com/hquery/query-composer) for installation instructions for both the hQuery Composer and Gateway
+See the [hQuery Composer](http://github.com/hquery/query-composer) for installation instructions for both the hQuery Composer and Gateway
   
 
 License
