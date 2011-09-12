@@ -72,6 +72,7 @@ class PatientApiTest  < Test::Unit::TestCase
   def test_medications
     assert_equal 1, @context.eval('patient.medications().length')
     assert_equal 24, @context.eval('patient.medications()[0].administrationTiming().period().value()')
+    assert @context.eval('patient.medications()[0].administrationTiming().institutionSpecified()')
     assert_equal 'tablet', @context.eval('patient.medications()[0].dose().unit()')
     assert_equal 'Multivitamin', @context.eval('patient.medications()[0].medicationInformation().freeTextProductName()')
     assert_equal 1, @context.eval('patient.medications().match({"RxNorm": ["89905"]})')

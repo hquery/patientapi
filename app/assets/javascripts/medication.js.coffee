@@ -38,6 +38,15 @@ class hQuery.AdministrationTiming
   @returns {hQuery.Scalar}
   ###
   period: -> new hQuery.Scalar @json['period']
+  
+  ###*
+  Indicates whether it is the interval (time between dosing), or frequency 
+  (number of doses in a time period) that is important. If instititutionSpecified is not 
+  present or is set to false, then the time between dosing is important (every 8 hours). 
+  If true, then the frequency of administration is important (e.g., 3 times per day).
+  @returns {Boolean}
+  ###
+  institutionSpecified: -> @json['institutionSpecified']
 
 ###*
 @class DoseRestriction -  restrictions on the medications dose, represented by a upper and lower dose

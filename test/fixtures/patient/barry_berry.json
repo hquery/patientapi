@@ -141,7 +141,8 @@ var barry = {
         "period": {
           "unit": "h",
           "value": 24
-        }
+        },
+        "institutionSpecified": true
       },
       "freeTextSig": "Take your vitamins!",
       "codes": {
