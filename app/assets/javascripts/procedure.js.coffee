@@ -14,6 +14,12 @@ treatments pertinent to the patient.
 ###
 class hQuery.Procedure extends hQuery.CodedEntry
   ###*
-  @returns {hQuery.Person} The entity that performed the procedure
+  @returns {hQuery.Actor} The provider that performed the procedure
   ###
-  performer: -> new hQuery.Actor @json['performer']
+  provider: -> new hQuery.Actor @json['provider']
+  
+  ###*
+  @returns {hQuery.CodedValue} A SNOMED code indicating the body site on which the 
+  procedure was performed
+  ###
+  site: -> new hQuery.CodedValue @json['site']['code'], @json['site']['codeSystem']

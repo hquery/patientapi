@@ -101,7 +101,17 @@ var barry = {
           "44388"
         ]
       },
+      "site":{
+        "code": "71854001",
+        "codeSystem": "SNOMED-CT"
+      },
       "time": 1073238725,
+      "provider": {
+        "person": {
+          "first": "Bobby",
+          "last": "Tables"
+        }
+      },
       "description": "Colonscopy"
     }
   ],
