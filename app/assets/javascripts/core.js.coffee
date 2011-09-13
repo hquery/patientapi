@@ -316,12 +316,12 @@ class hQuery.CodedEntryList extends Array
   @return {int} the count of matching entries
   ###
   match: (codeSet, start, end) ->
-    matchingEntries = 0
+    matchingEntries = []
     for entry in this
       afterStart = (!start || entry.date()>=start)
       beforeEnd = (!end || entry.date()<=end)
       if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet))
-        matchingEntries++;
+       matchingEntries.push(entry)
     matchingEntries
 
 

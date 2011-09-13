@@ -40,8 +40,8 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'CPT', @context.eval('patient.procedures()[0].type()[0].codeSystemName()')
     assert_equal 'Colonscopy', @context.eval('patient.procedures()[0].freeTextType()')
     assert @context.eval('patient.procedures()[0].includesCodeFrom({"CPT": ["44388"]})')
-    assert_equal 1, @context.eval('patient.procedures().match({"CPT": ["44388"]})')
-    assert_equal 0, @context.eval('patient.procedures().match({"CPT": ["44388"]}, sampleDate)')
+    assert_equal 1, @context.eval('patient.procedures().match({"CPT": ["44388"]}).length')
+    assert_equal 0, @context.eval('patient.procedures().match({"CPT": ["44388"]}, sampleDate).length')
     assert_equal 'SNOMED-CT', @context.eval('patient.procedures()[0].site().codeSystemName()')
     assert_equal '71854001', @context.eval('patient.procedures()[0].site().code()')
     assert_equal 'Bobby', @context.eval('patient.procedures()[0].provider().person().given()')
@@ -69,8 +69,8 @@ class PatientApiTest  < Test::Unit::TestCase
 
   def test_conditions
     assert_equal 2, @context.eval('patient.conditions().length')
-    assert @context.eval('patient.conditions().match({"SNOMED-CT": ["105539002"]})')
-    assert @context.eval('patient.conditions().match({"SNOMED-CT": ["109838007"]})')
+    assert @context.eval('patient.conditions().match({"SNOMED-CT": ["105539002"]}).length != 0')
+    assert @context.eval('patient.conditions().match({"SNOMED-CT": ["109838007"]}).length != 0')
   end
 
   def test_medications
@@ -79,7 +79,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert @context.eval('patient.medications()[0].administrationTiming().institutionSpecified()')
     assert_equal 'tablet', @context.eval('patient.medications()[0].dose().unit()')
     assert_equal 'Multivitamin', @context.eval('patient.medications()[0].medicationInformation().freeTextProductName()')
-    assert_equal 1, @context.eval('patient.medications().match({"RxNorm": ["89905"]})')
+    assert_equal 1, @context.eval('patient.medications().match({"RxNorm": ["89905"]}).length')
     assert_equal 'C38288', @context.eval('patient.medications()[0].route().code()')
     assert_equal 30, @context.eval('patient.medications()[0].fulfillmentHistory()[0].quantityDispensed().value()')
     assert_equal 'Bobby', @context.eval('patient.medications()[0].fulfillmentHistory()[0].provider().person().given()')
@@ -91,7 +91,7 @@ class PatientApiTest  < Test::Unit::TestCase
   
   def test_immunizations
     assert_equal 2, @context.eval('patient.immunizations().length')
-    assert @context.eval('patient.immunizations().match({"CVX": ["03"]})')
+    assert @context.eval('patient.immunizations().match({"CVX": ["03"]}).length != 0')
     assert_equal 'MMR', @context.eval('patient.immunizations()[0].medicationInformation().freeTextProductName()')
     assert_equal 2, @context.eval('patient.immunizations()[0].medicationSeriesNumber().value()')
     assert_equal 'vaccine', @context.eval('patient.immunizations()[0].comment()')
@@ -101,7 +101,7 @@ class PatientApiTest  < Test::Unit::TestCase
   def test_allergies
     assert_equal 1, @context.eval('patient.allergies().length')
     assert_equal 'Carries Epipen',@context.eval('patient.allergies()[0].comment()')
-    assert_equal 1, @context.eval('patient.allergies().match({"SNOMED-CT": ["39579001"]})')
+    assert_equal 1, @context.eval('patient.allergies().match({"SNOMED-CT": ["39579001"]}).length')
     assert_equal 'Anaphalactic reaction to peanuts', @context.eval('patient.allergies()[0].freeTextType()')
     assert_equal '414285001', @context.eval('patient.allergies()[0].reaction().code()')
     assert_equal '371924009', @context.eval('patient.allergies()[0].severity().code()')
