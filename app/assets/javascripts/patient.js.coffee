@@ -6,13 +6,46 @@
 # =require result.js.coffee
 # =require immunization.js.coffee
 # =require allergy.js.coffee
+# =require provider.js.coffee
+# =require languages.js.coffee
 
 ###*
 @namespace scoping into the hquery namespace
 ###
 this.hQuery ||= {}
 
-
+###*
+@class Supports
+@exports Supports as hQuery.Supports
+###
+class hQuery.Supports
+  constructor: (@json) ->
+  ###*
+  @returns {DateRange}
+  ###
+  supportDate: -> new hQuery.DateRange @json['supportDate']
+    
+  ###*
+  @returns {Person} 
+  ###
+  guardian: -> new hQuery.Person @json['guardian']
+  
+  ###*
+  @returns {String}
+  ###
+  guardianSupportType: -> @json['guardianSupportType']
+  
+  ###*
+  @returns {Person}
+  ###
+  contact: -> new hQuery.Person @json['contact']
+  
+  ###*
+  @returns {String}
+  ###
+  contactSupportType: -> @json['guardianSupportType']
+  
+  
 ###*
 @class Representation of a patient
 @augments hQuery.Person
@@ -39,6 +72,77 @@ class hQuery.Patient extends hQuery.Person
     oneYear = 365*oneDay;
     return (date.getTime()-this.birthtime().getTime())/oneYear;
     
+  ###*
+  @returns {CodedValue} the domestic partnership status of the patient
+  The following HL7 codeset is used:
+  A  Annulled
+  D  Divorced
+  I   Interlocutory
+  L  Legally separated
+  M  Married
+  P  Polygamous
+  S  Never Married
+  T  Domestic Partner
+  W  Widowed
+  ###
+  maritalStatus: -> new hQuery.CodedValue @json['maritalStatus']['code'], @json['maritalStatus']['codeSystem']
+  
+  ###*
+  @returns {CodedValue}  of the spiritual faith affiliation of the patient
+  It uses the HL7 codeset.  http://www.hl7.org/memonly/downloads/v3edition.cfm#V32008
+  ###
+  religiousAffiliation: -> new hQuery.CodedValue @json['religiousAffiliation']['code'], @json['religiousAffiliation']['codeSystem']
+  
+  ###*
+  @returns {CodedValue}  of the race of the patient
+  CDC codes:  http://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.238&code=1000-9
+  ###
+  race: -> new hQuery.CodedValue @json['race']['code'], @json['race']['codeSystem']
+  
+  ###*
+  @returns {CodedValue} of the ethnicity of the patient
+  CDC codes:  http://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.238&code=1000-9
+  ###
+  ethnicity: -> new hQuery.CodedValue @json['ethnicity']['code'], @json['ethnicity']['codeSystem']
+  
+  ###*
+  @returns {CodedValue} This is the code specifying the level of confidentiality of the document.
+  HL7 Confidentiality Code (2.16.840.1.113883.5.25)
+  ###
+  confidentiality: -> new hQuery.CodedValue @json['confidentiality']['code'], @json['confidentiality']['codeSystem']
+  
+  ###*
+  @returns {Address} of the location where the patient was born
+  ###
+  birthPlace: -> new hQuery.Address @json['birthPlace']
+  
+  ###*
+  @returns {Supports} information regarding key support contacts relative to healthcare decisions, including next of kin
+  ###
+  supports: -> new hQuery.Supports @json['supports']
+  
+  ###*
+  @returns {Organization}
+  ###
+  custodian: -> new hQuery.Organization @json['custodian']
+
+  ###*
+  @returns {Provider}  the providers associated with the patient
+  ###
+  provider: -> new hQuery.Provider @json['provider']
+  
+   
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link hQuery.LanguagesSpoken} objects
+  Code from http://www.ietf.org/rfc/rfc4646.txt representing the name of the human language
+  ###
+  languages: ->
+    list = new hQuery.CodedEntryList
+    if @json['languages']
+      for language in @json['languages']
+        list.push(new hQuery.Language(language))
+    list
+
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link hQuery.Encounter} objects
   ###
@@ -121,5 +225,6 @@ class hQuery.Patient extends hQuery.Person
         list.push(new hQuery.Allergy(allergy))
     list
 
+    
 
 

@@ -17,6 +17,19 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 48, @context.eval('patient.age()').to_i
     assert_equal 1, @context.eval('patient.addresses().length').to_i
     assert_equal 'MA', @context.eval('patient.addresses()[0].state()')
+    assert_equal 'M', @context.eval('patient.maritalStatus().code()')
+    assert_equal '1013', @context.eval('patient.religiousAffiliation().code()')
+    assert_equal '2131-1', @context.eval('patient.race().code()')
+    assert_equal '2186-5', @context.eval('patient.ethnicity().code()')
+    assert_equal 'DC', @context.eval('patient.birthPlace().state()')
+    assert_equal 'Washington', @context.eval('patient.birthPlace().city()')
+    assert_equal 'N', @context.eval('patient.confidentiality().code()')
+    assert_equal 'General Hospital', @context.eval('patient.custodian().organizationName()')
+    assert_equal 2005, @context.eval('patient.supports().supportDate().hi().getFullYear()')
+    assert_equal 2005, @context.eval('patient.provider().careProvisionDateRange().hi().getFullYear()')
+    assert_equal 'Mary', @context.eval('patient.provider().providerEntity().given()')
+    assert_equal 'Care', @context.eval('patient.provider().providerEntity().last()')
+    assert_equal 'en', @context.eval('patient.languages()[0].type()[0].code()')
   end
 
   def test_encounters

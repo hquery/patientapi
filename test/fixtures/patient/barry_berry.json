@@ -3,6 +3,46 @@ var barry = {
   "last": "Berry",
   "gender": "M",
   "birthdate": -223262033,
+  "maritalStatus": {
+        "code": "M",
+        "codeSystem": "HL7"
+      },
+  "religiousAffiliation": {
+        "code": "1013",
+        "codeSystem": "HL7"
+      },
+  "race": {
+        "code": "2131-1",
+        "codeSystem": "CDC"
+      },
+  "ethnicity": {
+        "code": "2186-5",
+        "codeSystem": "CDC"
+      },
+  "birthPlace": {
+     "city": "Washington",
+     "state": "DC"
+     },
+  "confidentiality": {
+        "code": "N",
+        "codeSystem": "HL7"
+      },
+  "provider":{
+     "providerEntity": {
+        "first":"Mary",
+	"last":"Care"
+        },
+     "careProvisionDateRange": {
+        "hi": 1124956803,
+        "low": 1124956803
+        }
+     },
+  "languages":[{
+     "codes": {
+       "IETF": [
+         "en"
+	 ] }
+  }],
   "addresses": [
     {
       "street": [
@@ -13,6 +53,16 @@ var barry = {
       "postalCode": "01803"
     }
   ],
+  "supports": {
+    "supportDate": {
+      "hi": 1124956803,
+      "low": 1124956803
+        }
+    },
+  "custodian":{
+     "organizationName": "General Hospital"
+     },
+  
   "encounters": [
     {
       "codes": {
