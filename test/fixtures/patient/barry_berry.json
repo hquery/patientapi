@@ -78,7 +78,11 @@ var barry = {
         "code": "04",
         "codeSystem": "regular"
       },
-      "organizationName": "General Hospital",
+      "performer": {
+        "organization": {
+          "organizationName": "General Hospital"
+        }
+      },
       "low": 1124956803,
       "hi": 1314259203,
       "reasonText" : "PCP referred",

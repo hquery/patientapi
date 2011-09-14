@@ -40,7 +40,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'Outpatient encounter', @context.eval('patient.encounters()[0].freeTextType()')
     assert_equal 'Home', @context.eval('patient.encounters()[0].dischargeDisp()')
     assert_equal '04', @context.eval('patient.encounters()[0].admitType().code()')
-    assert_equal 'General Hospital', @context.eval('patient.encounters()[0].encounterProvider().organizationName()')
+    assert_equal 'General Hospital', @context.eval('patient.encounters()[0].performer().organization().organizationName()')
     assert_equal 2005, @context.eval('patient.encounters()[0].encounterDuration().low().getFullYear()')
     assert_equal 2011, @context.eval('patient.encounters()[0].encounterDuration().hi().getFullYear()')
     assert_equal 'PCP referred', @context.eval('patient.encounters()[0].reasonForVisit().reasonText()')

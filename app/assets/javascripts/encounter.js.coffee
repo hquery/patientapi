@@ -49,9 +49,9 @@ class hQuery.Encounter extends hQuery.CodedEntry
   admitType: -> new hQuery.CodedValue @json['admitType']['code'], @json['admitType']['codeSystem']
   
   ###*
-  @returns {hQuery.Organization}
+  @returns {hQuery.Actor}
   ###
-  encounterProvider: -> new hQuery.Organization @json
+  performer: -> new hQuery.Actor @json['performer']
   
   ###*
   @returns {hQuery.DateRange}
