@@ -4,40 +4,24 @@
 this.hQuery ||= {}
 
 # =require core.coffee
+
+
 ###*
-@class Provider
-
-Describes a person/organization that has provided treatment for the given condition. 
-
-The dateRange element describes the last range that the actor provided treatment for the 
-condition.
-
-The provider is represented by the core:actor substitution group which equates to either a 
-person element or and organization element being present.
-@exports Provider as hQuery.Provider 
+@class CauseOfDeath
+@exports CauseOfDeath as hQuery.CauseOfDeath
 ###
-class hQuery.Provider
+class hQuery.CauseOfDeath
   constructor: (@json) ->
 
   ###*
-   @returns {hQuery.DateRange} the date range this provider provided treatment
+  @returns {hQuery.Date}
   ###
-  effectiveDate: -> new hQuery.DateRange @json['effectiveDate'] 
+  timeOfDeath: -> new hQuery.dateFromUtcSeconds @json['timeOfDeath']
 
   ###*
-   @returns {hQuery.Actor} the person or organization the provided the treatment
+  @returns {int}
   ###
-  actor: -> new hQuery.Actor @json['actor'] 
-
-  ###*
-   @returns {hQuery.Informant} the person or organization that is providing the information about this provider
-  ###
-  informant: -> new hQuery.Informant @json['informant'] 
-
-  ###*
-   @returns {String} Free text block
-  ###
-  narrative: -> @json['narrative']
+  ageAtDeath: -> @json['ageAtDeath']
 
 ###*
 @class hQuery.Condition
@@ -58,3 +42,34 @@ class hQuery.Condition extends hQuery.CodedEntry
   providers: ->    
     for  provider in @json['treatingProviders'] 
        new Provider provider 
+       
+  ###*
+  Diagnosis Priority
+  @returns {int}
+  ###
+  diagnosisPriority: -> @json['diagnosisPriority']
+  
+  ###*
+  age at onset
+  @returns {int}
+  ###
+  ageAtOnset: -> @json['ageAtOnset']
+  
+  
+  ###*
+  cause of death
+  @returns {hQuery.CauseOfDeath}
+  ###
+  causeOfDeath: -> new hQuery.CauseOfDeath @json['causeOfDeath']
+  
+  ###*
+  problem status
+  @returns {hQuery.CodedValue}
+  ###
+  problemStatus: -> new hQuery.CodedValue @json['problemStatus']['code'], @json['problemStatus']['codeSystem']
+  
+  ###*
+  comment
+  @returns {String}
+  ###
+  comment: -> @json['comment']

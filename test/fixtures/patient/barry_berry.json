@@ -118,8 +118,13 @@ var barry = {
         ]
       },
       "time": 1263167138,
-      "description": "Colorectal Cancer"
-    }
+      "description": "Colorectal Cancer",
+      "ageAtOnset": 20,
+      "problemStatus":{
+        "code": "55561003",
+        "codeSystem": "SNOMED-CT"
+      }
+      }
   ],
   "vital_signs": [
     {
