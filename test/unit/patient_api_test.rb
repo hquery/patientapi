@@ -43,8 +43,8 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'General Hospital', @context.eval('patient.encounters()[0].performer().organization().organizationName()')
     assert_equal 2005, @context.eval('patient.encounters()[0].encounterDuration().low().getFullYear()')
     assert_equal 2011, @context.eval('patient.encounters()[0].encounterDuration().hi().getFullYear()')
-    assert_equal 'PCP referred', @context.eval('patient.encounters()[0].reasonForVisit().reasonText()')
-    assert_equal 'xx', @context.eval('patient.encounters()[0].reasonForVisit().reasonCode().code()')
+    assert_equal 'PCP referred', @context.eval('patient.encounters()[0].reasonForVisit().freeTextType()')
+    assert_equal 'CPT', @context.eval('patient.encounters()[0].reasonForVisit().type()[0].codeSystemName()')
   end
 
   def test_procedures

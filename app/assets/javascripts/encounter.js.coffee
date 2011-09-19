@@ -5,24 +5,6 @@ this.hQuery ||= {}
 
 
 # =require core.coffee
-
-###*
-@class ReasonForVisit
-@exports ReasonForVisit as hQuery.ReasonForVisit
-###
-class hQuery.ReasonForVisit
-  constructor: (@json) ->
-
-  ###*
-  @returns {String}
-  ###
-  reasonText: -> @json['reasonText']
-  
-  ###*
-  @returns {CodedValue}
-  ###
-  reasonCode: -> new hQuery.CodedValue @json['reasonCode']['code'], @json['reasonCode']['codeSystem']
-   
 	
 ###*
 An Encounter is an interaction, regardless of the setting, between a patient and a
@@ -54,12 +36,17 @@ class hQuery.Encounter extends hQuery.CodedEntry
   performer: -> new hQuery.Actor @json['performer']
   
   ###*
+  @returns {hQuery.Organization}
+  ###
+  facility: -> new hQuery.Organization @json['facility']
+
+  ###*
   @returns {hQuery.DateRange}
   ###
   encounterDuration: -> new hQuery.DateRange @json
   
   ###*
-  @returns {hQuery.ReasonForVisit}
+  @returns {hQuery.CodedEntry}
   ###
-  reasonForVisit: -> new hQuery.ReasonForVisit @json
+  reasonForVisit: -> new hQuery.CodedEntry @json['reason']
   

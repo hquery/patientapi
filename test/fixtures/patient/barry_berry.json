@@ -85,11 +85,14 @@ var barry = {
       },
       "low": 1124956803,
       "hi": 1314259203,
-      "reasonText" : "PCP referred",
-      "reasonCode": {
-              "code": "xx",
-              "codeSystem": "Internal"
-          }
+      "reason": {
+        "codes": {
+          "CPT": [
+            "99201"
+          ]
+        },
+        "description": "PCP referred",
+      }
   },
     {
       "codes": {
