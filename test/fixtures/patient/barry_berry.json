@@ -168,7 +168,7 @@ var barry = {
         "codeSystem": "SNOMED-CT"
       },
       "time": 1073238725,
-      "provider": {
+      "performer": {
         "person": {
           "first": "Bobby",
           "last": "Tables"

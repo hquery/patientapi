@@ -57,8 +57,8 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 0, @context.eval('patient.procedures().match({"CPT": ["44388"]}, sampleDate).length')
     assert_equal 'SNOMED-CT', @context.eval('patient.procedures()[0].site().codeSystemName()')
     assert_equal '71854001', @context.eval('patient.procedures()[0].site().code()')
-    assert_equal 'Bobby', @context.eval('patient.procedures()[0].provider().person().given()')
-    assert_equal 'Tables', @context.eval('patient.procedures()[0].provider().person().last()')
+    assert_equal 'Bobby', @context.eval('patient.procedures()[0].performer().person().given()')
+    assert_equal 'Tables', @context.eval('patient.procedures()[0].performer().person().last()')
   end
 
   def test_vital_signs

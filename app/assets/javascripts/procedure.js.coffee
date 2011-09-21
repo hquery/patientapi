@@ -16,7 +16,7 @@ class hQuery.Procedure extends hQuery.CodedEntry
   ###*
   @returns {hQuery.Actor} The provider that performed the procedure
   ###
-  provider: -> new hQuery.Actor @json['provider']
+  performer: -> new hQuery.Actor @json['performer']
   
   ###*
   @returns {hQuery.CodedValue} A SNOMED code indicating the body site on which the 
