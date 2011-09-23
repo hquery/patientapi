@@ -322,7 +322,7 @@ class hQuery.CodedEntryList extends Array
   @param {Object} codeSet a hash with code system names as keys and an array of codes as values
   @param {Date} start the start of the period during which the entry must occur, a null value will match all times
   @param {Date} end the end of the period during which the entry must occur, a null value will match all times
-  @return {int} the count of matching entries
+  @return {Array[CodedEntry]} the matching entries
   ###
   match: (codeSet, start, end) ->
     matchingEntries = []
