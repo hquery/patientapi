@@ -1,6 +1,7 @@
 var barry = {
   "first": "Barry",
   "last": "Berry",
+  "name": "Barry B. Berry",
   "gender": "M",
   "birthdate": -223262033,
   "maritalStatus": {

@@ -157,6 +157,15 @@ class hQuery.Person
    @returns {String} the last/family name of the person
   ###
   last: -> @json['last']
+  
+  ###*
+   @returns {String} the display name of the person
+  ###
+  name: -> 
+    if @json['name']
+      @json['name']
+    else
+      @json['first'] + ' ' + @json['last']
 
   ###*
    @returns {Array} an array of {@link hQuery.Address} objects associated with the patient

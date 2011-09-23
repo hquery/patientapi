@@ -12,6 +12,8 @@ class PatientApiTest  < Test::Unit::TestCase
 
   def test_demographics
     assert_equal 'Barry', @context.eval('patient.given()')
+    assert_equal 'Berry', @context.eval('patient.last()')
+    assert_equal 'Barry B. Berry', @context.eval('patient.name()')
     assert_equal 1962, @context.eval('patient.birthtime().getFullYear()')
     assert_equal 'M', @context.eval('patient.gender()')
     assert_equal 48, @context.eval('patient.age()').to_i
