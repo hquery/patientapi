@@ -75,29 +75,24 @@ class hQuery.Immunization extends hQuery.CodedEntry
   constructor: (@json) ->
  
   ###*
-  @returns{medicationSeriesNumber} 
+  @returns{hQuery.Scalar} 
   ###
   medicationSeriesNumber: ->  new hQuery.Scalar @json['medicationSeriesNumber']
   
   ###*
-  @returns{ MedicationInformation}
+  @returns{hQuery.MedicationInformation}
   ###
   medicationInformation: ->new hQuery.MedicationInformation @json
   
   ###*
-  @returns{administeredDate} Date immunization was administered
+  @returns{Date} Date immunization was administered
   ###
   administeredDate: -> dateFromUtcSeconds @json['administeredDate']
   
   ###*
-  @returns{Organization} performing provider  administering immunization
+  @returns{hQuery.Actor} Performer of immunization
   ###
-  medicationSeriesNumber: ->  new hQuery.Scalar @json['medicationSeriesNumber']
-  
-  ###*
-  @returns{Actor} location where performed
-  ###
-  performer:-> new hQuery.Organization @json['performer']
+  performer:-> new hQuery.Actor @json['performer']
   
   ###*
   @returns {comment} human readable description of event
