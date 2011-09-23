@@ -7,7 +7,7 @@ class PatientApiTest  < Test::Unit::TestCase
     initialize_patient = 'var patient = new hQuery.Patient(barry);'
     date = Time.new(2010,1,1)
     initialize_date = "var sampleDate = new Date(#{date.to_i*1000});"
-    @context = ExecJS.compile(patient_api + "\n" + fixture_json + "\n" + initialize_patient + "\n" + initialize_date)
+    @context = ExecJS.compile(patient_api + "\nvar barry = " + fixture_json + ";\n" + initialize_patient + "\n" + initialize_date)
   end
 
   def test_demographics
@@ -113,6 +113,13 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 2, @context.eval('patient.immunizations()[0].medicationSeriesNumber().value()')
     assert_equal 'vaccine', @context.eval('patient.immunizations()[0].comment()')
     assert @context.eval('patient.immunizations()[1].refusalReason().isImmune()')
+    assert_equal 'FirstName', @context.eval('patient.immunizations()[1].performer().person().given()')
+    assert_equal 'LastName', @context.eval('patient.immunizations()[1].performer().person().last()')
+    assert_equal 1, @context.eval('patient.immunizations()[1].performer().person().addresses().length')
+    assert_equal '100 Bureau Drive', @context.eval('patient.immunizations()[1].performer().person().addresses()[0].street()[0]')
+    assert_equal 'Gaithersburg', @context.eval('patient.immunizations()[1].performer().person().addresses()[0].city()')
+    assert_equal 'MD', @context.eval('patient.immunizations()[1].performer().person().addresses()[0].state()')
+    assert_equal '20899', @context.eval('patient.immunizations()[1].performer().person().addresses()[0].postalCode()')
   end
   
   def test_allergies

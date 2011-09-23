@@ -1,69 +1,71 @@
-var barry = {
+{
   "first": "Barry",
   "last": "Berry",
   "name": "Barry B. Berry",
   "gender": "M",
   "birthdate": -223262033,
   "maritalStatus": {
-        "code": "M",
-        "codeSystem": "HL7"
-      },
+    "code": "M",
+    "codeSystem": "HL7"
+  },
   "religiousAffiliation": {
-        "code": "1013",
-        "codeSystem": "HL7"
-      },
+    "code": "1013",
+    "codeSystem": "HL7"
+  },
   "race": {
-        "code": "2131-1",
-        "codeSystem": "CDC"
-      },
+    "code": "2131-1",
+    "codeSystem": "CDC"
+  },
   "ethnicity": {
-        "code": "2186-5",
-        "codeSystem": "CDC"
-      },
+    "code": "2186-5",
+    "codeSystem": "CDC"
+  },
   "birthPlace": {
-     "city": "Washington",
-     "state": "DC"
-     },
+    "city": "Washington",
+    "stateOrProvince": "DC"
+  },
   "confidentiality": {
-        "code": "N",
-        "codeSystem": "HL7"
-      },
-  "provider":{
-     "providerEntity": {
-        "first":"Mary",
-	"last":"Care"
-        },
-     "careProvisionDateRange": {
-        "hi": 1124956803,
-        "low": 1124956803
-        }
-     },
-  "languages":[{
-     "codes": {
-       "IETF": [
-         "en"
-	 ] }
-  }],
+    "code": "N",
+    "codeSystem": "HL7"
+  },
+  "provider": {
+    "providerEntity": {
+      "first": "Mary",
+      "last": "Care"
+    },
+    "careProvisionDateRange": {
+      "hi": 1124956803,
+      "low": 1124956803
+    }
+  },
+  "languages": [
+    {
+      "codes": {
+        "IETF": [
+          "en"
+        ]
+      }
+    }
+  ],
   "addresses": [
     {
-      "street": [
+      "streetAddress": [
         "15 Credibility Street"
       ],
       "city": "Boston",
-      "state": "MA",
-      "postalCode": "01803"
+      "stateOrProvince": "MA",
+      "zip": "01803"
     }
   ],
   "supports": {
     "supportDate": {
       "hi": 1124956803,
       "low": 1124956803
-        }
-    },
-  "custodian":{
-     "organizationName": "General Hospital"
-     },
-  
+    }
+  },
+  "custodian": {
+    "organizationName": "General Hospital"
+  },
   "encounters": [
     {
       "codes": {
@@ -92,9 +94,9 @@ var barry = {
             "99201"
           ]
         },
-        "description": "PCP referred",
+        "description": "PCP referred"
       }
-  },
+    },
     {
       "codes": {
         "CPT": [
@@ -124,11 +126,11 @@ var barry = {
       "time": 1263167138,
       "description": "Colorectal Cancer",
       "ageAtOnset": 20,
-      "problemStatus":{
+      "problemStatus": {
         "code": "55561003",
         "codeSystem": "SNOMED-CT"
       }
-      }
+    }
   ],
   "vital_signs": [
     {
@@ -154,7 +156,7 @@ var barry = {
         "scalar": 132,
         "units": "mm[Hg]"
       },
-     "comment": "BP taken sitting"
+      "comment": "BP taken sitting"
     }
   ],
   "procedures": [
@@ -164,7 +166,7 @@ var barry = {
           "44388"
         ]
       },
-      "site":{
+      "site": {
         "code": "71854001",
         "codeSystem": "SNOMED-CT"
       },
@@ -178,7 +180,8 @@ var barry = {
       "description": "Colonscopy"
     }
   ],
-  "results": [    {
+  "results": [
+    {
       "codes": {
         "SNOMED-CT": [
           "104150001"
@@ -188,24 +191,57 @@ var barry = {
       "description": "Sucralose hemolysis test",
       "status": "completed",
       "comment": "Negative"
-    }],
-  "immunizations" : [
+    }
+  ],
+  "immunizations": [
     {
-      "codes" : {
-        "CVX" : [ "03" ]
+      "codes": {
+        "CVX": [
+          "03"
+        ]
       },
-      "description" : "MMR",
-      "medicationSeriesNumber" : {"unit": "", "value": 2},
-      "comment" : "vaccine"
+      "description": "MMR",
+      "medicationSeriesNumber": {
+        "unit": "",
+        "value": 2
+      },
+      "comment": "vaccine"
     },
     {
-      "codes" : {
-        "CVX" : [ "04" ]
+      "codes": {
+        "CVX": [
+          "04"
+        ]
       },
-      "description" : "Something",
+      "description": "Something",
       "refusalInd": true,
-      "refusalReason": {"code": "IMMUNE", "codeSystem": "HL7 No Immunization Reason"},
-      "comment" : "patient invincible"
+      "performer": {
+        "person": {
+          "name": "\n      FirstName\n      LastName\n      ",
+          "first": "FirstName",
+          "last": "LastName",
+          "addresses": [
+            {
+              "streetAddress": ["100 Bureau Drive"],
+              "city": "Gaithersburg",
+              "stateOrProvince": "MD",
+              "zip": "20899",
+              "country": null
+            }
+          ],
+          "telecoms": [
+            {
+              "value": "tel:1-301-555-5555",
+              "use": "HP"
+            }
+          ]
+        }
+      },
+      "refusalReason": {
+        "code": "IMMUNE",
+        "codeSystem": "HL7 No Immunization Reason"
+      },
+      "comment": "patient invincible"
     }
   ],
   "medications": [
@@ -271,21 +307,23 @@ var barry = {
     }
   ],
   "allergies": [
-  {
-  "codes" : {
-        "SNOMED-CT" : [ "39579001" ]},
+    {
+      "codes": {
+        "SNOMED-CT": [
+          "39579001"
+        ]
+      },
       "time": 1269762692,
       "description": "Anaphalactic reaction to peanuts",
       "comment": "Carries Epipen",
-      "reaction":{
+      "reaction": {
         "code": "414285001",
         "codeSystem": "SNOMED-CT"
       },
-      "severity":{
+      "severity": {
         "code": "371924009",
         "codeSystem": "SNOMED-CT"
       }
     }
   ]
-};
-
+}
