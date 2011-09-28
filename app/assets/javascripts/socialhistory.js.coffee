@@ -7,7 +7,7 @@ this.hQuery ||= {}
 
 ###*
 
-The Social History Observation is used to define the patient’s occupational, personal (e.g. lifestyle), 
+The Social History Observation is used to define the patient's occupational, personal (e.g. lifestyle), 
 social, and environmental history and health risk factors, as well as administrative data such as 
 marital status, race, ethnicity and religious affiliation. The types of conditions
 described have been constrained to the SNOMED CT code system using constrained code set, 2.16.840.1.113883.3.88.12.80.60:
