@@ -26,6 +26,8 @@ class hQuery.Encounter extends hQuery.CodedEntry
   dischargeDisp: -> @json['dischargeDisp']
   
   ###*
+  A code indicating the priority of the admission (e.g., Emergency, Urgent, Elective, et cetera) from
+  National Uniform Billing Committee (NUBC)
   @returns {CodedValue}
   ###
   admitType: -> new hQuery.CodedValue @json['admitType']['code'], @json['admitType']['codeSystem']

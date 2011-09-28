@@ -8,6 +8,8 @@
 # =require allergy.js.coffee
 # =require provider.js.coffee
 # =require languages.js.coffee
+# =require pregnancy.js.coffee
+# =require socialhistory.js.coffee
 
 ###*
 @namespace scoping into the hquery namespace
@@ -225,6 +227,24 @@ class hQuery.Patient extends hQuery.Person
         list.push(new hQuery.Allergy(allergy))
     list
 
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link Pregnancy} objects
+  ###
+  pregnancies: ->
+    list = new hQuery.CodedEntryList
+    if @json['pregnancies']
+      for pregnancy in @json['pregnancies']
+        list.push(new hQuery.Pregnancy(pregnancy))
+    list
     
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link Socialhistory} objects
+  ###
+  socialhistories: ->
+    list = new hQuery.CodedEntryList
+    if @json['socialhistories']
+      for socialhistory in @json['socialhistories']
+        list.push(new hQuery.Socialhistory(socialhistory))
+    list
 
 

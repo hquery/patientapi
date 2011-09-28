@@ -131,4 +131,14 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal '371924009', @context.eval('patient.allergies()[0].severity().code()')
   end
   
+  def test_pregnancies
+    assert_equal 1, @context.eval('patient.pregnancies().length')
+    assert_equal 1, @context.eval('patient.pregnancies().match({"SNOMED-CT": ["77386006"]}).length')
+  end
+  
+ def test_socialhistory
+    assert_equal 1, @context.eval('patient.socialhistories().length')
+    assert_equal 1, @context.eval('patient.socialhistories().match({"SNOMED-CT": ["229819007"]}).length')
+  end
+  
 end

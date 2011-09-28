@@ -325,5 +325,21 @@
         "codeSystem": "SNOMED-CT"
       }
     }
+  ],
+         "pregnancies": [
+  {
+  "codes" : {
+        "SNOMED-CT" : [ "77386006" ]},
+      "time": 1269762692,
+      "description": "patient currently pregnant"
+    }
+  ],
+	"socialhistories": [
+  {
+  "codes" : {
+        "SNOMED-CT" : [ "229819007" ]},
+      "description": "Tobacco use and exposure",
+      "value": "1 pack per day"
+    }
   ]
 }

@@ -25,7 +25,7 @@ class hQuery.Allergy  extends hQuery.CodedEntry
   Allergies to a specific medication shall use RxNorm for the values.  
   @returns {CodedValue}
   ###
-  product: -> hQuery.createCodedValue @json['product']['code'], @json['product']['codeSystem']
+  product: -> this.type()
 
   ###*
   Date of allergy or adverse event
