@@ -87,36 +87,47 @@ class hQuery.Patient extends hQuery.Person
   T  Domestic Partner
   W  Widowed
   ###
-  maritalStatus: -> new hQuery.CodedValue @json['maritalStatus']['code'], @json['maritalStatus']['codeSystem']
+  maritalStatus: -> 
+    if @json['maritalStatus']
+      return new hQuery.CodedValue @json['maritalStatus']['code'], @json['maritalStatus']['codeSystem']
   
   ###*
   @returns {CodedValue}  of the spiritual faith affiliation of the patient
   It uses the HL7 codeset.  http://www.hl7.org/memonly/downloads/v3edition.cfm#V32008
   ###
-  religiousAffiliation: -> new hQuery.CodedValue @json['religiousAffiliation']['code'], @json['religiousAffiliation']['codeSystem']
+  religiousAffiliation: -> 
+    if @json['religiousAffiliation']
+      return new hQuery.CodedValue @json['religiousAffiliation']['code'], @json['religiousAffiliation']['codeSystem']
   
   ###*
   @returns {CodedValue}  of the race of the patient
   CDC codes:  http://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.238&code=1000-9
   ###
-  race: -> new hQuery.CodedValue @json['race']['code'], @json['race']['codeSystem']
+  race: -> 
+    if @json['race']
+      return new hQuery.CodedValue @json['race']['code'], @json['race']['codeSystem']
   
   ###*
   @returns {CodedValue} of the ethnicity of the patient
   CDC codes:  http://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.238&code=1000-9
   ###
-  ethnicity: -> new hQuery.CodedValue @json['ethnicity']['code'], @json['ethnicity']['codeSystem']
+  ethnicity: -> 
+    if @json['ethnicity']
+      return new hQuery.CodedValue @json['ethnicity']['code'], @json['ethnicity']['codeSystem']
   
   ###*
   @returns {CodedValue} This is the code specifying the level of confidentiality of the document.
   HL7 Confidentiality Code (2.16.840.1.113883.5.25)
   ###
-  confidentiality: -> new hQuery.CodedValue @json['confidentiality']['code'], @json['confidentiality']['codeSystem']
+  confidentiality: -> 
+    if  @json['confidentiality']
+      return new hQuery.CodedValue @json['confidentiality']['code'], @json['confidentiality']['codeSystem']
   
   ###*
   @returns {Address} of the location where the patient was born
   ###
-  birthPlace: -> new hQuery.Address @json['birthPlace']
+  birthPlace: -> 
+    new hQuery.Address @json['birthPlace']
   
   ###*
   @returns {Supports} information regarding key support contacts relative to healthcare decisions, including next of kin
