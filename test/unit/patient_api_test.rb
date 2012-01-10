@@ -16,7 +16,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'Barry B. Berry', @context.eval('patient.name()')
     assert_equal 1962, @context.eval('patient.birthtime().getFullYear()')
     assert_equal 'M', @context.eval('patient.gender()')
-    assert_equal 48, @context.eval('patient.age()').to_i
+    assert_equal 49, @context.eval('patient.age(new Date(2012,1,10))').to_i
     assert_equal 1, @context.eval('patient.addresses().length').to_i
     assert_equal 'MA', @context.eval('patient.addresses()[0].state()')
     assert_equal 'M', @context.eval('patient.maritalStatus().code()')
@@ -136,7 +136,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 1, @context.eval('patient.pregnancies().match({"SNOMED-CT": ["77386006"]}).length')
   end
   
- def test_socialhistory
+  def test_socialhistory
     assert_equal 1, @context.eval('patient.socialhistories().length')
     assert_equal 1, @context.eval('patient.socialhistories().match({"SNOMED-CT": ["229819007"]}).length')
   end
