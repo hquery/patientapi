@@ -98,7 +98,7 @@ class hQuery.Address
   ###*
   @returns {Array[String]} the street addresses
   ###
-  street: -> @json['streetAddress']
+  street: -> @json['street']
   ###*
   @returns {String} the city
   ###
@@ -106,7 +106,7 @@ class hQuery.Address
   ###*
   @returns {String} the State
   ###
-  state: -> @json['stateOrProvince']
+  state: -> @json['state']
   ###*
   @returns {String} the postal code
   ###

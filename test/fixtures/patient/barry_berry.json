@@ -22,7 +22,7 @@
   },
   "birthPlace": {
     "city": "Washington",
-    "stateOrProvince": "DC"
+    "state": "DC"
   },
   "confidentiality": {
     "code": "N",
@@ -49,11 +49,11 @@
   ],
   "addresses": [
     {
-      "streetAddress": [
+      "street": [
         "15 Credibility Street"
       ],
       "city": "Boston",
-      "stateOrProvince": "MA",
+      "state": "MA",
       "zip": "01803"
     }
   ],
@@ -222,9 +222,9 @@
           "last": "LastName",
           "addresses": [
             {
-              "streetAddress": ["100 Bureau Drive"],
+              "street": ["100 Bureau Drive"],
               "city": "Gaithersburg",
-              "stateOrProvince": "MD",
+              "state": "MD",
               "zip": "20899",
               "country": null
             }
