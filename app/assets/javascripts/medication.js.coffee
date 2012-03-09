@@ -66,7 +66,6 @@ class hQuery.Fulfillment
   constructor: (@json) ->
 
   dispenseDate: -> hQuery.dateFromUtcSeconds @json['dispenseDate']
-  provider:-> new hQuery.Actor @json['provider']
   dispensingPharmacyLocation: -> new hQuery.Address @json['dispensingPharmacyLocation']
   quantityDispensed: -> new hQuery.Scalar @json['quantityDispensed']
   prescriptionNumber: -> @json['prescriptionNumber']

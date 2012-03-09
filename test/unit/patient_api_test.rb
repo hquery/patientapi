@@ -99,7 +99,6 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 1, @context.eval('patient.medications().match({"RxNorm": ["89905"]}).length')
     assert_equal 'C38288', @context.eval('patient.medications()[0].route().code()')
     assert_equal 30, @context.eval('patient.medications()[0].fulfillmentHistory()[0].quantityDispensed().value()')
-    assert_equal 'Bobby', @context.eval('patient.medications()[0].fulfillmentHistory()[0].provider().person().given()')
     assert @context.eval('patient.medications()[0].typeOfMedication().isOverTheCounter()')
     assert @context.eval('patient.medications()[0].statusOfMedication().isActive()')
     assert_equal 30, @context.eval('patient.medications()[0].orderInformation()[0].quantityOrdered().value()')
