@@ -251,7 +251,7 @@ class hQuery.Patient extends hQuery.Person
   ###*
   @returns {hQuery.CodedEntryList} A list of {@link Socialhistory} objects
   ###
-  socialhistories: ->
+  socialHistories: ->
     list = new hQuery.CodedEntryList
     if @json['socialhistories']
       for socialhistory in @json['socialhistories']

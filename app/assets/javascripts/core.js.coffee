@@ -295,6 +295,12 @@ class hQuery.CodedEntry
   @returns {String}
   ###
   id: -> @json['id']
+  
+  ###*
+  Status for this coded entry
+  @returns {String}
+  ###
+  status: -> @json['status']
 
   ###*
   Returns true if any of this entry's codes match a code in the supplied codeSet.
@@ -333,6 +339,25 @@ class hQuery.CodedEntryList extends Array
        matchingEntries.push(entry)
     matchingEntries
 
+  ###*
+  Return a new list of entries that is the result of concatenating the passed in entries with this list
+  @return {Array[CodedEntry]} the set of concatenated entries
+  ###
+  concat: (otherEntries) ->
+    cloned = []
+    for entry in this
+      cloned.push entry
+    for entry in otherEntries
+      cloned.push entry
+    cloned
+
+  ###*
+  Match entries with the specified statuses
+  @return {Array[CodedEntry]} the matching entries
+  ###
+  withStatuses: (statuses, includeUndefined=true) ->
+    statuses = statuses.concat([undefined, null])
+    (entry for entry in this when entry.status() in statuses)
 
 ###*
 @private
