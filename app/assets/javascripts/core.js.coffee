@@ -344,7 +344,7 @@ class hQuery.CodedEntryList extends Array
   @return {Array[CodedEntry]} the set of concatenated entries
   ###
   concat: (otherEntries) ->
-    cloned = []
+    cloned = new hQuery.CodedEntryList()
     for entry in this
       cloned.push entry
     for entry in otherEntries
