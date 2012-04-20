@@ -214,7 +214,7 @@ class hQuery.Organization
   ###*
   @returns {String} the name of the organization
   ###
-  organizationName: -> @json['organizationName']
+  organizationName: -> @json['name']
   
   ###*
   @returns {Array} an array of {@link hQuery.Address} objects associated with the organization

@@ -64,7 +64,7 @@
     }
   },
   "custodian": {
-    "organizationName": "General Hospital"
+    "name": "General Hospital"
   },
   "encounters": [
     {
@@ -83,7 +83,7 @@
       },
       "performer": {
         "organization": {
-          "organizationName": "General Hospital"
+          "name": "General Hospital"
         }
       },
       "low": 1124956803,
