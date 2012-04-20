@@ -1,12 +1,15 @@
 language: ruby
 rvm:
   - 1.9.2
-branches:
-  only:
-    - master
-    - develop
+script: bundle exec rake
+
 notifications:
   email:
     recipients:
       - healthcare-ci@googlegroups.com
     on_failure: change
+
+branches: 
+  only:
+    - master
+    - develop
