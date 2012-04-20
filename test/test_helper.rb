@@ -4,6 +4,7 @@ require 'tilt'
 require 'coffee_script'
 require 'sprockets'
 require 'execjs'
+require 'turn'
 
 Tilt::CoffeeScriptTemplate.default_bare=true
 class QueryExecutor

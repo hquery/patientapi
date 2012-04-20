@@ -136,8 +136,8 @@ class PatientApiTest  < Test::Unit::TestCase
   end
   
   def test_socialhistory
-    assert_equal 1, @context.eval('patient.socialhistories().length')
-    assert_equal 1, @context.eval('patient.socialhistories().match({"SNOMED-CT": ["229819007"]}).length')
+    assert_equal 1, @context.eval('patient.socialHistories().length')
+    assert_equal 1, @context.eval('patient.socialHistories().match({"SNOMED-CT": ["229819007"]}).length')
   end
   
 end
