@@ -279,6 +279,33 @@ class hQuery.CodedEntry
   date: -> hQuery.dateFromUtcSeconds @json['time']
 
   ###*
+  Date and time at which the coded entry started
+  @returns {Date}
+  ###
+  startDate: -> hQuery.dateFromUtcSeconds @json['start_time']
+
+  ###*
+  Date and time at which the coded entry ended
+  @returns {Date}
+  ###
+  endDate: -> hQuery.dateFromUtcSeconds @json['end_time']
+
+  ###*
+  Tries to find a single point in time for this entry. Will first return date if it is present,
+  then fall back to startDate and finally endDate
+  @returns {Date}
+  ###
+  timeStamp: -> 
+    refTime = @json['time'] || @json['start_time'] || @json['end_time']
+    hQuery.dateFromUtcSeconds refTime
+
+  ###*
+  Determines whether the entry specifies a time range or not
+  @returns {boolean}
+  ###
+  isTimeRange: -> @json['start_time']? && @json['end_time']?
+
+  ###*
   An Array of CodedValues which describe what kind of coded entry took place
   @returns {Array}
   ###
