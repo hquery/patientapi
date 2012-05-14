@@ -13,6 +13,9 @@ treatments pertinent to the patient.
 @exports Procedure as hQuery.Procedure 
 ###
 class hQuery.Procedure extends hQuery.CodedEntry
+  constructor: (@json) ->
+    super(@json)
+  
   ###*
   @returns {hQuery.Actor} The provider that performed the procedure
   ###

@@ -13,6 +13,9 @@ The Coded Entry code system should be SNOMED-CT
 @exports Pregnancy as hQuery.Pregnancy 
 ###
 class hQuery.Pregnancy extends hQuery.CodedEntry
+  constructor: (@json) ->
+    super(@json)
+  
 
   ###*
   @returns {String}

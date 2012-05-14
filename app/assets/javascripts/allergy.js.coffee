@@ -11,7 +11,9 @@ this.hQuery ||= {}
 @exports Allergy as hQuery.Allergy
 ###
 class hQuery.Allergy  extends hQuery.CodedEntry
-
+  constructor: (@json) ->
+    super(@json)
+    
   ###*
   Food and substance allergies use the Unique Ingredient Identifier(UNII) from the FDA
   http://www.fda.gov/ForIndustry/DataStandards/StructuredProductLabeling/ucm162523.htm

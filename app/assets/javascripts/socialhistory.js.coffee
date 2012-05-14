@@ -28,6 +28,8 @@ note:  Social History is not part of the existing green c32.
 class hQuery.Socialhistory extends hQuery.CodedEntry
   
   constructor: (@json) ->
+    super(@json)
+  
        
   ###*
   Value returns the value of the result. This will return an object. The properties of this

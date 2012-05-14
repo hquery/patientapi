@@ -271,63 +271,68 @@ class hQuery.Informant
 ###
 class hQuery.CodedEntry
   constructor: (@json) ->
+    @_date = hQuery.dateFromUtcSeconds @json['time']
+    @_startDate = hQuery.dateFromUtcSeconds @json['start_time']
+    @_endDate = hQuery.dateFromUtcSeconds @json['end_time']
+    @_type = hQuery.createCodedValues @json['codes']
+    @_status = @json['status']
+    @_id = @json['id']
+    @_freeTextType = @json['description']
 
   ###*
   Date and time at which the coded entry took place
   @returns {Date}
   ###
-  date: -> hQuery.dateFromUtcSeconds @json['time']
+  date: -> @_date
 
   ###*
   Date and time at which the coded entry started
   @returns {Date}
   ###
-  startDate: -> hQuery.dateFromUtcSeconds @json['start_time']
+  startDate: -> @_startDate
 
   ###*
   Date and time at which the coded entry ended
   @returns {Date}
   ###
-  endDate: -> hQuery.dateFromUtcSeconds @json['end_time']
+  endDate: -> @_endDate
 
   ###*
   Tries to find a single point in time for this entry. Will first return date if it is present,
   then fall back to startDate and finally endDate
   @returns {Date}
   ###
-  timeStamp: -> 
-    refTime = @json['time'] || @json['start_time'] || @json['end_time']
-    hQuery.dateFromUtcSeconds refTime
+  timeStamp: -> @_date || @_startDate || @_endDate
 
   ###*
   Determines whether the entry specifies a time range or not
   @returns {boolean}
   ###
-  isTimeRange: -> @json['start_time']? && @json['end_time']?
+  isTimeRange: -> @_startDate? && @_endDate?
 
   ###*
   An Array of CodedValues which describe what kind of coded entry took place
   @returns {Array}
   ###
-  type: -> hQuery.createCodedValues @json['codes']
+  type: -> @_type
 
   ###*
   A free text description of the type of coded entry
   @returns {String}
   ###
-  freeTextType: -> @json['description']
+  freeTextType: -> @_freeTextType
 
   ###*
   Unique identifier for this coded entry
   @returns {String}
   ###
-  id: -> @json['id']
+  id: -> @_id
   
   ###*
   Status for this coded entry
   @returns {String}
   ###
-  status: -> @json['status']
+  status: -> @_status
 
   ###*
   Returns true if any of this entry's codes match a code in the supplied codeSet.
@@ -335,7 +340,7 @@ class hQuery.CodedEntry
   @returns {boolean}
   ###
   includesCodeFrom: (codeSet) ->
-    for codedValue in this.type()
+    for codedValue in @_type
       if codedValue.includedIn(codeSet)
         return true
     return false

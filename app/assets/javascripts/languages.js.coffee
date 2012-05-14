@@ -12,7 +12,8 @@ this.hQuery ||= {}
 ###
 class hQuery.Language extends hQuery.CodedEntry
   constructor: (@json) ->
-
+    super(@json)
+  
   ###*
   @returns {hQuery.CodedValue}
   ###

@@ -19,7 +19,9 @@ practitioner
 @exports Encounter as hQuery.Encounter 
 ###
 class hQuery.Encounter extends hQuery.CodedEntry
-	
+  constructor: (@json) ->
+    super(@json)
+  	
   ###*
   @returns {String}
   ####

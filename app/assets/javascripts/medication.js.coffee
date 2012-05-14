@@ -151,6 +151,9 @@ class hQuery.StatusOfMedication extends hQuery.CodedValue
 @exports Medication as hQuery.Medication
 ###
 class hQuery.Medication  extends hQuery.CodedEntry
+  constructor: (@json) ->
+    super(@json)
+  
   ###*
   @returns {String}
   ####

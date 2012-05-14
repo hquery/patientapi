@@ -73,7 +73,8 @@ class hQuery.NoImmunization extends hQuery.CodedValue
 ###
 class hQuery.Immunization extends hQuery.CodedEntry
   constructor: (@json) ->
- 
+    super(@json)
+   
   ###*
   @returns{hQuery.Scalar} 
   ###

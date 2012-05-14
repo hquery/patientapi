@@ -35,6 +35,7 @@ number of treating providers for the particular condition can be supplied.
 class hQuery.Condition extends hQuery.CodedEntry
   
   constructor: (@json) ->
+    super(@json)
   
   ###*
    @returns {Array, hQuery.Provider} an array of providers for the condition
