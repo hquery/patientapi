@@ -10,6 +10,8 @@
 # =require languages.js.coffee
 # =require pregnancy.js.coffee
 # =require socialhistory.js.coffee
+# =require caregoal.js.coffee
+# =require medicalequipment.js.coffee
 
 ###*
 @namespace scoping into the hquery namespace
@@ -258,4 +260,23 @@ class hQuery.Patient extends hQuery.Person
         list.push(new hQuery.Socialhistory(socialhistory))
     list
 
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link CareGoal} objects
+  ###
+  careGoals: ->
+    list = new hQuery.CodedEntryList
+    if @json['care_goals']
+      for caregoal in @json['care_goals']
+        list.push(new hQuery.CareGoal(caregoal))
+    list
+
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link MedicalEquipment} objects
+  ###
+  medicalEquipment: ->
+    list = new hQuery.CodedEntryList
+    if @json['medical_equipment']
+      for equipment in @json['medical_equipment']
+        list.push(new hQuery.MedicalEquipment(equipment))
+    list
 

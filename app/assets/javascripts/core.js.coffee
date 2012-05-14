@@ -389,7 +389,10 @@ class hQuery.CodedEntryList extends Array
   ###
   withStatuses: (statuses, includeUndefined=true) ->
     statuses = statuses.concat([undefined, null])
-    (entry for entry in this when entry.status() in statuses)
+    cloned = new hQuery.CodedEntryList()
+    for entry in this
+      cloned.push entry if entry.status() in statuses
+    cloned
 
 ###*
 @private
