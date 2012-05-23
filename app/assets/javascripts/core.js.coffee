@@ -271,9 +271,12 @@ class hQuery.Informant
 ###
 class hQuery.CodedEntry
   constructor: (@json) ->
-    @_date = hQuery.dateFromUtcSeconds @json['time']
-    @_startDate = hQuery.dateFromUtcSeconds @json['start_time']
-    @_endDate = hQuery.dateFromUtcSeconds @json['end_time']
+    if @json['time']
+      @_date = hQuery.dateFromUtcSeconds @json['time']
+    if @json['start_time']
+      @_startDate = hQuery.dateFromUtcSeconds @json['start_time']
+    if @json['end_time']
+      @_endDate = hQuery.dateFromUtcSeconds @json['end_time']
     @_type = hQuery.createCodedValues @json['codes']
     @_status = @json['status']
     @_id = @json['id']
