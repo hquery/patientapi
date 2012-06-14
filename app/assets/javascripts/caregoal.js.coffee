@@ -15,4 +15,4 @@ The plan of care contains data defining prospective or intended orders, interven
 class hQuery.CareGoal extends hQuery.CodedEntry
   
   constructor: (@json) ->
-  
+    super(@json)

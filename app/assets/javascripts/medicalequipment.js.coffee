@@ -20,4 +20,4 @@ C83-[CT-128-2] This section SHALL conform to the IHE Medical Devices Section, an
 class hQuery.MedicalEquipment extends hQuery.CodedEntry
   
   constructor: (@json) ->
-  
+    super(@json)
