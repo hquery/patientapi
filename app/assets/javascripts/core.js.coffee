@@ -348,6 +348,17 @@ class hQuery.CodedEntry
         return true
     return false
 
+  ###*
+  @returns {Boolean} whether the entry was negated
+  ###
+  negationInd: -> @json['negationInd']
+  
+  ###*
+  Indicates the reason an entry was negated.
+  @returns {hQuery.CodedValue}   Used to indicate reason an immunization was not administered.
+  ###
+  negationReason: -> new hQuery.CodedValue @json['negationReason']['code'], @json['negationReason']['codeSystem']
+
 ###*
 @class Represents a list of hQuery.CodedEntry instances. Offers utility methods for matching
 entries based on codes and date ranges
