@@ -338,7 +338,7 @@ class hQuery.CodedEntry
   status: -> @_status
 
   ###*
-  Returns true if any of this entry's codes match a code in the supplied codeSet.
+  Returns true if any of this entry codes match a code in the supplied codeSet.
   @param {Object} codeSet a hash with code system names as keys and an array of codes as values
   @returns {boolean}
   ###
@@ -357,7 +357,11 @@ class hQuery.CodedEntry
   Indicates the reason an entry was negated.
   @returns {hQuery.CodedValue}   Used to indicate reason an immunization was not administered.
   ###
-  negationReason: -> new hQuery.CodedValue @json['negationReason']['code'], @json['negationReason']['codeSystem']
+  negationReason: -> 
+    if @json['negationReason'] && @json['negationReason']['code'] && @json['negationReason']['codeSystem']
+      new hQuery.CodedValue @json['negationReason']['code'], @json['negationReason']['codeSystem']
+    else
+      null
 
 ###*
 @class Represents a list of hQuery.CodedEntry instances. Offers utility methods for matching
@@ -411,12 +415,13 @@ class hQuery.CodedEntryList extends Array
 
   ###*
   Filter entries based on negation
+  @param {Object} codeSet a hash with code system names as keys and an array of codes as values
   @return {CodedEntryList} negated entries
   ###
-  withNegation: ->
+  withNegation: (codeSet) ->
     cloned = new hQuery.CodedEntryList()
     for entry in this
-      cloned.push entry if entry.negationInd()
+      cloned.push entry if entry.negationInd() && (!codeSet || (entry.negationReason() && entry.negationReason().includedIn(codeSet)))
     cloned
 
   ###*
