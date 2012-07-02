@@ -351,7 +351,7 @@ class hQuery.CodedEntry
   ###*
   @returns {Boolean} whether the entry was negated
   ###
-  negationInd: -> @json['negationInd']
+  negationInd: -> @json['negationInd'] || false
   
   ###*
   Indicates the reason an entry was negated.
@@ -374,20 +374,21 @@ class hQuery.CodedEntryList extends Array
   @param {Object} codeSet a hash with code system names as keys and an array of codes as values
   @param {Date} start the start of the period during which the entry must occur, a null value will match all times
   @param {Date} end the end of the period during which the entry must occur, a null value will match all times
-  @return {Array[CodedEntry]} the matching entries
+  @param {boolean} includeNegated whether the returned list of entries should include those that have been negated
+  @return {CodedEntryList} the matching entries
   ###
-  match: (codeSet, start, end) ->
-    matchingEntries = []
+  match: (codeSet, start, end, includeNegated=false) ->
+    cloned = new hQuery.CodedEntryList()
     for entry in this
-      afterStart = (!start || entry.date()>=start)
-      beforeEnd = (!end || entry.date()<=end)
-      if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet))
-       matchingEntries.push(entry)
-    matchingEntries
+      afterStart = (!start || entry.timeStamp()>=start)
+      beforeEnd = (!end || entry.timeStamp()<=end)
+      if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet) && (includeNegated || !entry.negationInd()))
+        cloned.push(entry)
+    cloned
 
   ###*
   Return a new list of entries that is the result of concatenating the passed in entries with this list
-  @return {Array[CodedEntry]} the set of concatenated entries
+  @return {CodedEntryList} the set of concatenated entries
   ###
   concat: (otherEntries) ->
     cloned = new hQuery.CodedEntryList()
@@ -399,13 +400,24 @@ class hQuery.CodedEntryList extends Array
 
   ###*
   Match entries with the specified statuses
-  @return {Array[CodedEntry]} the matching entries
+  @return {CodedEntryList} the matching entries
   ###
   withStatuses: (statuses, includeUndefined=true) ->
     statuses = statuses.concat([undefined, null])
     cloned = new hQuery.CodedEntryList()
     for entry in this
       cloned.push entry if entry.status() in statuses
+    cloned
+
+  ###*
+  Filter entries based on negation
+  @param {boolean} negated true to filter out events that have not been negated, false to filter out negated
+  @return {CodedEntryList} the negated entries
+  ###
+  withNegation: (negated) ->
+    cloned = new hQuery.CodedEntryList()
+    for entry in this
+      cloned.push entry if entry.negationInd()==negated
     cloned
 
 ###*
