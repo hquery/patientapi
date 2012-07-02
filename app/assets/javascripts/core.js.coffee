@@ -411,13 +411,22 @@ class hQuery.CodedEntryList extends Array
 
   ###*
   Filter entries based on negation
-  @param {boolean} negated true to filter out events that have not been negated, false to filter out negated
-  @return {CodedEntryList} the negated entries
+  @return {CodedEntryList} negated entries
   ###
-  withNegation: (negated) ->
+  withNegation: ->
     cloned = new hQuery.CodedEntryList()
     for entry in this
-      cloned.push entry if entry.negationInd()==negated
+      cloned.push entry if entry.negationInd()
+    cloned
+
+  ###*
+  Filter entries based on negation
+  @return {CodedEntryList} non-negated entries
+  ###
+  withoutNegation: ->
+    cloned = new hQuery.CodedEntryList()
+    for entry in this
+      cloned.push entry if !entry.negationInd()
     cloned
 
 ###*

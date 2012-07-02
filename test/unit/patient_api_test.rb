@@ -107,8 +107,8 @@ class PatientApiTest  < Test::Unit::TestCase
   
   def test_immunizations
     assert_equal 3, @context.eval('patient.immunizations().length')
-    assert_equal 2, @context.eval('patient.immunizations().withNegation(false).length')
-    assert_equal 1, @context.eval('patient.immunizations().withNegation(true).length')
+    assert_equal 2, @context.eval('patient.immunizations().withoutNegation().length')
+    assert_equal 1, @context.eval('patient.immunizations().withNegation().length')
     assert_equal 1, @context.eval('patient.immunizations().match({"CVX": ["03"]}).length')
     assert_equal 1, @context.eval('patient.immunizations().match({"CVX": ["04"]}).length')
     assert_equal 2, @context.eval('patient.immunizations().match({"CVX": ["04"]},null,null,true).length')
