@@ -214,7 +214,6 @@
         ]
       },
       "description": "Something",
-      "refusalInd": true,
       "negationInd": true,
       "performer": {
         "person": {
@@ -237,10 +236,6 @@
             }
           ]
         }
-      },
-      "refusalReason": {
-        "code": "IMMUNE",
-        "codeSystem": "HL7 No Immunization Reason"
       },
       "negationReason": {
         "code": "IMMUNE",
