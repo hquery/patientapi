@@ -338,7 +338,7 @@ class hQuery.CodedEntry
   status: -> @_status
 
   ###*
-  Returns true if any of this entry's codes match a code in the supplied codeSet.
+  Returns true if any of this entry codes match a code in the supplied codeSet.
   @param {Object} codeSet a hash with code system names as keys and an array of codes as values
   @returns {boolean}
   ###
@@ -347,6 +347,21 @@ class hQuery.CodedEntry
       if codedValue.includedIn(codeSet)
         return true
     return false
+
+  ###*
+  @returns {Boolean} whether the entry was negated
+  ###
+  negationInd: -> @json['negationInd'] || false
+  
+  ###*
+  Indicates the reason an entry was negated.
+  @returns {hQuery.CodedValue}   Used to indicate reason an immunization was not administered.
+  ###
+  negationReason: -> 
+    if @json['negationReason'] && @json['negationReason']['code'] && @json['negationReason']['codeSystem']
+      new hQuery.CodedValue @json['negationReason']['code'], @json['negationReason']['codeSystem']
+    else
+      null
 
 ###*
 @class Represents a list of hQuery.CodedEntry instances. Offers utility methods for matching
@@ -363,20 +378,21 @@ class hQuery.CodedEntryList extends Array
   @param {Object} codeSet a hash with code system names as keys and an array of codes as values
   @param {Date} start the start of the period during which the entry must occur, a null value will match all times
   @param {Date} end the end of the period during which the entry must occur, a null value will match all times
-  @return {Array[CodedEntry]} the matching entries
+  @param {boolean} includeNegated whether the returned list of entries should include those that have been negated
+  @return {CodedEntryList} the matching entries
   ###
-  match: (codeSet, start, end) ->
-    matchingEntries = []
+  match: (codeSet, start, end, includeNegated=false) ->
+    cloned = new hQuery.CodedEntryList()
     for entry in this
-      afterStart = (!start || entry.date()>=start)
-      beforeEnd = (!end || entry.date()<=end)
-      if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet))
-       matchingEntries.push(entry)
-    matchingEntries
+      afterStart = (!start || entry.timeStamp()>=start)
+      beforeEnd = (!end || entry.timeStamp()<=end)
+      if (afterStart && beforeEnd && entry.includesCodeFrom(codeSet) && (includeNegated || !entry.negationInd()))
+        cloned.push(entry)
+    cloned
 
   ###*
   Return a new list of entries that is the result of concatenating the passed in entries with this list
-  @return {Array[CodedEntry]} the set of concatenated entries
+  @return {CodedEntryList} the set of concatenated entries
   ###
   concat: (otherEntries) ->
     cloned = new hQuery.CodedEntryList()
@@ -388,13 +404,34 @@ class hQuery.CodedEntryList extends Array
 
   ###*
   Match entries with the specified statuses
-  @return {Array[CodedEntry]} the matching entries
+  @return {CodedEntryList} the matching entries
   ###
   withStatuses: (statuses, includeUndefined=true) ->
     statuses = statuses.concat([undefined, null]) if includeUndefined
     cloned = new hQuery.CodedEntryList()
     for entry in this
       cloned.push entry if entry.status() in statuses
+    cloned
+
+  ###*
+  Filter entries based on negation
+  @param {Object} codeSet a hash with code system names as keys and an array of codes as values
+  @return {CodedEntryList} negated entries
+  ###
+  withNegation: (codeSet) ->
+    cloned = new hQuery.CodedEntryList()
+    for entry in this
+      cloned.push entry if entry.negationInd() && (!codeSet || (entry.negationReason() && entry.negationReason().includedIn(codeSet)))
+    cloned
+
+  ###*
+  Filter entries based on negation
+  @return {CodedEntryList} non-negated entries
+  ###
+  withoutNegation: ->
+    cloned = new hQuery.CodedEntryList()
+    for entry in this
+      cloned.push entry if !entry.negationInd()
     cloned
 
 ###*

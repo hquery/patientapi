@@ -103,7 +103,7 @@ class hQuery.Immunization extends hQuery.CodedEntry
   ###*
   @returns {Boolean} whether the immunization has been refused by the patient.
   ###
-  refusalInd: -> @json['refusalInd']
+  refusalInd: -> @json['negationInd']
   
   ###*
   NoImmunzation as defined by value set 2.16.840.1.113883.1.11.19717
@@ -111,5 +111,5 @@ class hQuery.Immunization extends hQuery.CodedEntry
   It indicates the reason an immunization was not administered.
   @returns {hQuery.NoImmunization}   Used to indicate reason an immunization was not administered.
   ###
-  refusalReason: -> new hQuery.NoImmunization @json['refusalReason']['code'], @json['refusalReason']['codeSystem']
+  refusalReason: -> new hQuery.NoImmunization @json['negationReason']['code'], @json['negationReason']['codeSystem']
  

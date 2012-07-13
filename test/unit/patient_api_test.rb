@@ -106,12 +106,21 @@ class PatientApiTest  < Test::Unit::TestCase
   end
   
   def test_immunizations
-    assert_equal 2, @context.eval('patient.immunizations().length')
-    assert @context.eval('patient.immunizations().match({"CVX": ["03"]}).length != 0')
+    assert_equal 3, @context.eval('patient.immunizations().length')
+    assert_equal 2, @context.eval('patient.immunizations().withoutNegation().length')
+    assert_equal 1, @context.eval('patient.immunizations().withNegation().length')
+    assert_equal 1, @context.eval('patient.immunizations().withNegation({"HL7 No Immunization Reason":["IMMUNE"]}).length')
+    assert_equal 0, @context.eval('patient.immunizations().withNegation({"HL7 No Immunization Reason":["OSTOCK"]}).length')
+    assert_equal 1, @context.eval('patient.immunizations().match({"CVX": ["03"]}).length')
+    assert_equal 1, @context.eval('patient.immunizations().match({"CVX": ["04"]}).length')
+    assert_equal 2, @context.eval('patient.immunizations().match({"CVX": ["04"]},null,null,true).length')
     assert_equal 'MMR', @context.eval('patient.immunizations()[0].medicationInformation().freeTextProductName()')
     assert_equal 2, @context.eval('patient.immunizations()[0].medicationSeriesNumber().value()')
     assert_equal 'vaccine', @context.eval('patient.immunizations()[0].comment()')
+    assert @context.eval('patient.immunizations()[1].refusalInd()')
     assert @context.eval('patient.immunizations()[1].refusalReason().isImmune()')
+    assert @context.eval('patient.immunizations()[1].negationInd()')
+    assert_equal 'IMMUNE', @context.eval('patient.immunizations()[1].negationReason().code()')
     assert_equal 'FirstName', @context.eval('patient.immunizations()[1].performer().person().given()')
     assert_equal 'LastName', @context.eval('patient.immunizations()[1].performer().person().last()')
     assert_equal 1, @context.eval('patient.immunizations()[1].performer().person().addresses().length')

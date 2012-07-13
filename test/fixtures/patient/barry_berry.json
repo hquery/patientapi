@@ -214,7 +214,7 @@
         ]
       },
       "description": "Something",
-      "refusalInd": true,
+      "negationInd": true,
       "performer": {
         "person": {
           "name": "\n      FirstName\n      LastName\n      ",
@@ -237,9 +237,40 @@
           ]
         }
       },
-      "refusalReason": {
+      "negationReason": {
         "code": "IMMUNE",
         "codeSystem": "HL7 No Immunization Reason"
+      },
+      "comment": "patient invincible"
+    },
+    {
+      "codes": {
+        "CVX": [
+          "04"
+        ]
+      },
+      "description": "Something",
+      "performer": {
+        "person": {
+          "name": "\n      FirstName\n      LastName\n      ",
+          "first": "FirstName",
+          "last": "LastName",
+          "addresses": [
+            {
+              "street": ["100 Bureau Drive"],
+              "city": "Gaithersburg",
+              "state": "MD",
+              "zip": "20899",
+              "country": null
+            }
+          ],
+          "telecoms": [
+            {
+              "value": "tel:1-301-555-5555",
+              "use": "HP"
+            }
+          ]
+        }
       },
       "comment": "patient invincible"
     }
