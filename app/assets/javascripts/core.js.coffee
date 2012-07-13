@@ -391,7 +391,7 @@ class hQuery.CodedEntryList extends Array
   @return {Array[CodedEntry]} the matching entries
   ###
   withStatuses: (statuses, includeUndefined=true) ->
-    statuses = statuses.concat([undefined, null])
+    statuses = statuses.concat([undefined, null]) if includeUndefined
     cloned = new hQuery.CodedEntryList()
     for entry in this
       cloned.push entry if entry.status() in statuses
