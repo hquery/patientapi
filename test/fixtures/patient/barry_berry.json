@@ -3,6 +3,7 @@
   "last": "Berry",
   "name": "Barry B. Berry",
   "gender": "M",
+  "expired": true,
   "birthdate": -223262033,
   "maritalStatus": {
     "code": "M",
