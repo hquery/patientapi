@@ -32,6 +32,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'Mary', @context.eval('patient.provider().providerEntity().given()')
     assert_equal 'Care', @context.eval('patient.provider().providerEntity().last()')
     assert_equal 'en', @context.eval('patient.languages()[0].type()[0].code()')
+    assert_equal true, @context.eval('patient.expired()')
   end
 
   def test_encounters

@@ -159,6 +159,11 @@ class hQuery.Patient extends hQuery.Person
     list
 
   ###*
+  @returns {Boolean} returns true if the patient has died
+  ###
+  expired: -> @json['expired']
+
+  ###*
   @returns {hQuery.CodedEntryList} A list of {@link hQuery.Encounter} objects
   ###
   encounters: ->
