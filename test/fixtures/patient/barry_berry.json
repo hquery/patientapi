@@ -4,6 +4,7 @@
   "name": "Barry B. Berry",
   "gender": "M",
   "expired": true,
+  "clinicalTrialParticipant": false,
   "birthdate": -223262033,
   "maritalStatus": {
     "code": "M",
