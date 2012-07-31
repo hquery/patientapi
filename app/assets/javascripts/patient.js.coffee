@@ -164,6 +164,11 @@ class hQuery.Patient extends hQuery.Person
   expired: -> @json['expired']
 
   ###*
+  @returns {Boolean} returns true if the patient participated in a clinical trial
+  ###
+  clinicalTrialParticipant: -> @json['clinicalTrialParticipant']
+
+  ###*
   @returns {hQuery.CodedEntryList} A list of {@link hQuery.Encounter} objects
   ###
   encounters: ->
