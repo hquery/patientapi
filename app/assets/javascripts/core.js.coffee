@@ -314,6 +314,13 @@ class hQuery.CodedEntry
   isTimeRange: -> @_startDate? && @_endDate?
 
   ###*
+  Determines whether a coded entry contains sufficient information (code and at least 
+  one time stamp) to be usable
+  @returns {boolean}
+  ###
+  isUsable: -> @_type.length>0 && (@_date || @_startDate || @_endDate)
+  
+  ###*
   An Array of CodedValues which describe what kind of coded entry took place
   @returns {Array}
   ###
@@ -372,6 +379,14 @@ class hQuery.CodedEntryList extends Array
   constructor: ->
     @push arguments...
 
+  ###*
+  Push the supplied entry onto this list if it is usable
+  @param {CodedEntry} a coded entry that should be added to the list if it is usable
+  ###
+  pushIfUsable: (entry) ->
+    if entry.isUsable()
+      this.push(entry)
+  
   ###*
   Return the number of entries that match the
   supplied code set where those entries occur between the supplied time bounds

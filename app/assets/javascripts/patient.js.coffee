@@ -175,7 +175,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['encounters']
       for encounter in @json['encounters']
-        list.push(new hQuery.Encounter(encounter))
+        list.pushIfUsable(new hQuery.Encounter(encounter))
     list
     
   ###*
@@ -185,7 +185,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['medications']
       for medication in @json['medications']
-        list.push(new hQuery.Medication(medication))
+        list.pushIfUsable(new hQuery.Medication(medication))
     list
       
 
@@ -196,7 +196,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['conditions']
       for condition in @json['conditions']
-        list.push(new hQuery.Condition(condition))
+        list.pushIfUsable(new hQuery.Condition(condition))
     list
 
   ###*
@@ -206,7 +206,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['procedures']
       for procedure in @json['procedures']
-        list.push(new hQuery.Procedure(procedure))
+        list.pushIfUsable(new hQuery.Procedure(procedure))
     list
       
   ###*
@@ -216,7 +216,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['results']
       for result in @json['results']
-        list.push(new hQuery.Result(result))
+        list.pushIfUsable(new hQuery.Result(result))
     list
 
   ###*
@@ -226,7 +226,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['vital_signs']
       for vital in @json['vital_signs']
-        list.push(new hQuery.Result(vital))
+        list.pushIfUsable(new hQuery.Result(vital))
     list
 
   ###*
@@ -236,7 +236,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['immunizations']
       for immunization in @json['immunizations']
-        list.push(new hQuery.Immunization(immunization))
+        list.pushIfUsable(new hQuery.Immunization(immunization))
     list
     
     
@@ -247,7 +247,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['allergies']
       for allergy in @json['allergies']
-        list.push(new hQuery.Allergy(allergy))
+        list.pushIfUsable(new hQuery.Allergy(allergy))
     list
 
   ###*
@@ -257,7 +257,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['pregnancies']
       for pregnancy in @json['pregnancies']
-        list.push(new hQuery.Pregnancy(pregnancy))
+        list.pushIfUsable(new hQuery.Pregnancy(pregnancy))
     list
     
   ###*
@@ -267,7 +267,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['socialhistories']
       for socialhistory in @json['socialhistories']
-        list.push(new hQuery.Socialhistory(socialhistory))
+        list.pushIfUsable(new hQuery.Socialhistory(socialhistory))
     list
 
   ###*
@@ -277,7 +277,7 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['care_goals']
       for caregoal in @json['care_goals']
-        list.push(new hQuery.CareGoal(caregoal))
+        list.pushIfUsable(new hQuery.CareGoal(caregoal))
     list
 
   ###*
@@ -287,6 +287,6 @@ class hQuery.Patient extends hQuery.Person
     list = new hQuery.CodedEntryList
     if @json['medical_equipment']
       for equipment in @json['medical_equipment']
-        list.push(new hQuery.MedicalEquipment(equipment))
+        list.pushIfUsable(new hQuery.MedicalEquipment(equipment))
     list
 

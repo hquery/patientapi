@@ -202,6 +202,7 @@
           "03"
         ]
       },
+      "time": 1263168508,
       "description": "MMR",
       "medicationSeriesNumber": {
         "unit": "",
@@ -215,16 +216,19 @@
           "04"
         ]
       },
+      "time": 1263168508,
       "description": "Something",
       "negationInd": true,
       "performer": {
         "person": {
-          "name": "\n      FirstName\n      LastName\n      ",
+          "name": "\n    FirstName\n    LastName\n    ",
           "first": "FirstName",
           "last": "LastName",
           "addresses": [
             {
-              "street": ["100 Bureau Drive"],
+              "street": [
+                "100 Bureau Drive"
+              ],
               "city": "Gaithersburg",
               "state": "MD",
               "zip": "20899",
@@ -251,15 +255,18 @@
           "04"
         ]
       },
+      "time": 1263168508,
       "description": "Something",
       "performer": {
         "person": {
-          "name": "\n      FirstName\n      LastName\n      ",
+          "name": "\n    FirstName\n    LastName\n    ",
           "first": "FirstName",
           "last": "LastName",
           "addresses": [
             {
-              "street": ["100 Bureau Drive"],
+              "street": [
+                "100 Bureau Drive"
+              ],
               "city": "Gaithersburg",
               "state": "MD",
               "zip": "20899",
@@ -361,18 +368,25 @@
       }
     }
   ],
-         "pregnancies": [
-  {
-  "codes" : {
-        "SNOMED-CT" : [ "77386006" ]},
+  "pregnancies": [
+    {
+      "codes": {
+        "SNOMED-CT": [
+          "77386006"
+        ]
+      },
       "time": 1269762692,
       "description": "patient currently pregnant"
     }
   ],
-	"socialhistories": [
-  {
-  "codes" : {
-        "SNOMED-CT" : [ "229819007" ]},
+  "socialhistories": [
+    {
+      "codes": {
+        "SNOMED-CT": [
+          "229819007"
+        ]
+      },
+      "time": 1269762692,
       "description": "Tobacco use and exposure",
       "value": "1 pack per day"
     }
