@@ -95,6 +95,8 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 20, @context.eval('patient.conditions()[1].ageAtOnset()')
     assert_equal '55561003', @context.eval('patient.conditions()[1].problemStatus().code()')
     assert_equal '371924009', @context.eval('patient.conditions()[1].severity().code()')
+    assert_equal 1, @context.eval('patient.conditions()[1].diagnosisPriority()')
+    assert_equal 'principal', @context.eval('patient.conditions()[1].ordinality()')
   end
 
   def test_medications

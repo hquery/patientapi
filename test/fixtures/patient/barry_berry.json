@@ -152,6 +152,8 @@
       "time": 1263167138,
       "description": "Colorectal Cancer",
       "ageAtOnset": 20,
+      "priority": 1,
+      "ordinality": "principal",
       "severity": {
         "code": "371924009",
         "codeSystem": "SNOMED-CT"
