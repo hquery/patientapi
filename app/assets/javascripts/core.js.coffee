@@ -233,6 +233,37 @@ class hQuery.Organization
     for tel in @json['telecoms']
       new hQuery.Telecom tel
 
+  ###*
+  @class a Facility
+  @exports Organization as hQuery.Facility
+  ###
+  class hQuery.Facility extends hQuery.CodedValue
+    constructor: (@json) ->
+      if @json['code']?
+        super @json['code']['code'], @json['code']['codeSystem']
+
+    ###*
+    @returns {String} the name of the facility
+    ###
+    name: -> @json['name']
+
+    ###*
+    @returns {Array} an array of {@link hQuery.Address} objects associated with the facility
+    ###
+    addresses: ->
+      list = []
+      if @json['addresses']
+        for address in @json['addresses']
+          list.push(new hQuery.Address(address))
+      list
+
+    ###*
+    @returns {Array} an array of {@link hQuery.Telecom} objects associated with the facility
+    ###
+    telecoms: ->
+      for tel in @json['telecoms']
+        new hQuery.Telecom tel
+
 
 ###*
 @class represents a DateRange in the form of hi and low date values.

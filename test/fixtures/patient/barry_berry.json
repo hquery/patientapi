@@ -75,6 +75,30 @@
           "99201"
         ]
       },
+      "facility": {
+        "name": "General Hospital",
+        "code": {
+          "code": "1155-1",
+          "codeSystem": "HL7 Healthcare Service Location"
+        },
+        "addresses": [
+          {
+            "street": [
+              "100 Bureau Drive"
+            ],
+            "city": "Gaithersburg",
+            "state": "MD",
+            "zip": "20899",
+            "country": null
+          }
+        ],
+        "telecoms": [
+          {
+            "value": "tel:1-301-555-5555",
+            "use": "HP"
+          }
+        ]
+      },
       "time": 1268042997,
       "description": "Outpatient encounter",
       "id": "OP12345",

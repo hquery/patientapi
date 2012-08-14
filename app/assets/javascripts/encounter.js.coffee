@@ -42,7 +42,7 @@ class hQuery.Encounter extends hQuery.CodedEntry
   ###*
   @returns {hQuery.Organization}
   ###
-  facility: -> new hQuery.Organization @json['facility']
+  facility: -> new hQuery.Facility @json['facility']
 
   ###*
   @returns {hQuery.DateRange}
