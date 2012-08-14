@@ -74,3 +74,9 @@ class hQuery.Condition extends hQuery.CodedEntry
   @returns {String}
   ###
   comment: -> @json['comment']
+  
+  ###*
+  This is a description of the level of the severity of the condition.
+  @returns {CodedValue} 
+  ###
+  severity: -> new hQuery.CodedValue @json['severity']['code'], @json['severity']['codeSystem']

@@ -93,6 +93,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert @context.eval('patient.conditions().match({"SNOMED-CT": ["109838007"]}).length != 0')
     assert_equal 20, @context.eval('patient.conditions()[1].ageAtOnset()')
     assert_equal '55561003', @context.eval('patient.conditions()[1].problemStatus().code()')
+    assert_equal '371924009', @context.eval('patient.conditions()[1].severity().code()')
   end
 
   def test_medications
