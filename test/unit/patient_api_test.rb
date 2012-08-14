@@ -73,6 +73,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal '105539002', @context.eval('patient.vitalSigns()[0].type()[0].code()')
     assert_equal 'SNOMED-CT', @context.eval('patient.vitalSigns()[0].type()[0].codeSystemName()')
     assert_equal 'completed', @context.eval('patient.vitalSigns()[0].status()')
+    assert_equal 'completed', @context.eval('patient.vitalSigns()[0].statusCode()["HL7 ActStatus"][0]')
     assert_equal 132, @context.eval('patient.vitalSigns()[1].value()["scalar"]')
     assert_equal '8480-6', @context.eval('patient.vitalSigns()[1].resultType()[0].code()')
     assert_equal 'BP taken sitting', @context.eval('patient.vitalSigns()[1].comment()')

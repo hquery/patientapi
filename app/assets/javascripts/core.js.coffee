@@ -309,7 +309,7 @@ class hQuery.CodedEntry
     if @json['end_time']
       @_endDate = hQuery.dateFromUtcSeconds @json['end_time']
     @_type = hQuery.createCodedValues @json['codes']
-    @_status = @json['status']
+    @_statusCode = @json['status_code']
     @_id = @json['id']
     @_freeTextType = @json['description']
 
@@ -373,7 +373,24 @@ class hQuery.CodedEntry
   Status for this coded entry
   @returns {String}
   ###
-  status: -> @_status
+  status: ->
+    if @_statusCode?
+      if @_statusCode['HL7 ActStatus']?
+        return @_statusCode['HL7 ActStatus'][0]
+      else if @_statusCode['SNOMED-CT']?
+        switch @_statusCode['SNOMED-CT'][0]
+          when '55561003'
+            'active'
+          when '73425007'
+            'inactive'
+          when '413322009'
+            'resolved'
+
+  ###*
+  Status for this coded entry
+  @returns {Hash} keys are code systems, values are arrays of codes
+  ###
+  statusCode: -> @_statusCode
 
   ###*
   Returns true if any of this entry codes match a code in the supplied codeSet.

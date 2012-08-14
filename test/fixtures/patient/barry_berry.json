@@ -171,7 +171,9 @@
       },
       "time": 1263168508,
       "description": "Tobacco Non-user",
-      "status": "completed"
+      "status_code": {
+        "HL7 ActStatus": ["completed"]
+      }
     },
     {
       "codes": {
@@ -181,7 +183,9 @@
       },
       "time": 1263168508,
       "description": "Systolic BP",
-      "status": "completed",
+      "status_code": {
+        "HL7 ActStatus": ["completed"]
+      },
       "value": {
         "scalar": 132,
         "units": "mm[Hg]"
@@ -219,7 +223,9 @@
       },
       "time": 1263168508,
       "description": "Sucralose hemolysis test",
-      "status": "completed",
+      "status_code": {
+        "HL7 ActStatus": ["completed"]
+      },
       "comment": "Negative"
     }
   ],
