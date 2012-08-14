@@ -105,6 +105,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert @context.eval('patient.medications()[0].statusOfMedication().isActive()')
     assert_equal 30, @context.eval('patient.medications()[0].orderInformation()[0].quantityOrdered().value()')
     assert_equal 20, @context.eval('patient.medications()[0].orderInformation()[0].fills()')
+    assert_equal 3, @context.eval('patient.medications()[0].cumulativeMedicationDuration()["scalar"]')
   end
   
   def test_immunizations

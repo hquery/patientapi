@@ -334,6 +334,10 @@
           }
         }
       ],
+      "cumulativeMedicationDuration": {
+        "scalar": 3,
+        "unit": "d"
+      },
       "orderInformation": [
         {
           "orderDateTime": 1073238725,
