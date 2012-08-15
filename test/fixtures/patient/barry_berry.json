@@ -101,7 +101,7 @@
       },
       "time": 1268042997,
       "description": "Outpatient encounter",
-      "id": "OP12345",
+      "_id": "OP12345",
       "dischargeDisp": "Home",
       "admitType": {
         "code": "04",

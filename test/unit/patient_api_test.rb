@@ -40,7 +40,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 2, @context.eval('patient.encounters().length')
     assert_equal '99201', @context.eval('patient.encounters()[0].type()[0].code()')
     assert_equal 'CPT', @context.eval('patient.encounters()[0].type()[0].codeSystemName()')
-    assert_equal 'OP12345', @context.eval('patient.encounters()[0].id()')
+    assert_equal 'OP12345', @context.eval('patient.encounters()[0].id')
     assert_equal 'Outpatient encounter', @context.eval('patient.encounters()[0].freeTextType()')
     assert_equal 'Home', @context.eval('patient.encounters()[0].dischargeDisp()')
     assert_equal '04', @context.eval('patient.encounters()[0].admitType().code()')
