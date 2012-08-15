@@ -233,6 +233,37 @@ class hQuery.Organization
     for tel in @json['telecoms']
       new hQuery.Telecom tel
 
+  ###*
+  @class a Facility
+  @exports Organization as hQuery.Facility
+  ###
+  class hQuery.Facility extends hQuery.CodedValue
+    constructor: (@json) ->
+      if @json['code']?
+        super @json['code']['code'], @json['code']['codeSystem']
+
+    ###*
+    @returns {String} the name of the facility
+    ###
+    name: -> @json['name']
+
+    ###*
+    @returns {Array} an array of {@link hQuery.Address} objects associated with the facility
+    ###
+    addresses: ->
+      list = []
+      if @json['addresses']
+        for address in @json['addresses']
+          list.push(new hQuery.Address(address))
+      list
+
+    ###*
+    @returns {Array} an array of {@link hQuery.Telecom} objects associated with the facility
+    ###
+    telecoms: ->
+      for tel in @json['telecoms']
+        new hQuery.Telecom tel
+
 
 ###*
 @class represents a DateRange in the form of hi and low date values.
@@ -278,7 +309,7 @@ class hQuery.CodedEntry
     if @json['end_time']
       @_endDate = hQuery.dateFromUtcSeconds @json['end_time']
     @_type = hQuery.createCodedValues @json['codes']
-    @_status = @json['status']
+    @_statusCode = @json['status_code']
     @_id = @json['id']
     @_freeTextType = @json['description']
 
@@ -342,7 +373,24 @@ class hQuery.CodedEntry
   Status for this coded entry
   @returns {String}
   ###
-  status: -> @_status
+  status: ->
+    if @_statusCode?
+      if @_statusCode['HL7 ActStatus']?
+        return @_statusCode['HL7 ActStatus'][0]
+      else if @_statusCode['SNOMED-CT']?
+        switch @_statusCode['SNOMED-CT'][0]
+          when '55561003'
+            'active'
+          when '73425007'
+            'inactive'
+          when '413322009'
+            'resolved'
+
+  ###*
+  Status for this coded entry
+  @returns {Hash} keys are code systems, values are arrays of codes
+  ###
+  statusCode: -> @_statusCode
 
   ###*
   Returns true if any of this entry codes match a code in the supplied codeSet.

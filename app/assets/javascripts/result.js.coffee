@@ -26,12 +26,6 @@ class hQuery.Result extends hQuery.CodedEntry
   @returns {CodedValue}
   ###
   resultType: -> this.type()
-   
-  ###*
-  A status from the HL7 ActStatusNormal vocabulary
-  @returns {String}
-  ###
-  status: -> @json['status']
 
   ###*
   Returns the value of the result. This will return an object. The properties of this

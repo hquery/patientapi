@@ -75,6 +75,30 @@
           "99201"
         ]
       },
+      "facility": {
+        "name": "General Hospital",
+        "code": {
+          "code": "1155-1",
+          "codeSystem": "HL7 Healthcare Service Location"
+        },
+        "addresses": [
+          {
+            "street": [
+              "100 Bureau Drive"
+            ],
+            "city": "Gaithersburg",
+            "state": "MD",
+            "zip": "20899",
+            "country": null
+          }
+        ],
+        "telecoms": [
+          {
+            "value": "tel:1-301-555-5555",
+            "use": "HP"
+          }
+        ]
+      },
       "time": 1268042997,
       "description": "Outpatient encounter",
       "id": "OP12345",
@@ -128,6 +152,12 @@
       "time": 1263167138,
       "description": "Colorectal Cancer",
       "ageAtOnset": 20,
+      "priority": 1,
+      "ordinality": "principal",
+      "severity": {
+        "code": "371924009",
+        "codeSystem": "SNOMED-CT"
+      },
       "problemStatus": {
         "code": "55561003",
         "codeSystem": "SNOMED-CT"
@@ -143,7 +173,9 @@
       },
       "time": 1263168508,
       "description": "Tobacco Non-user",
-      "status": "completed"
+      "status_code": {
+        "HL7 ActStatus": ["completed"]
+      }
     },
     {
       "codes": {
@@ -153,7 +185,9 @@
       },
       "time": 1263168508,
       "description": "Systolic BP",
-      "status": "completed",
+      "status_code": {
+        "HL7 ActStatus": ["completed"]
+      },
       "value": {
         "scalar": 132,
         "units": "mm[Hg]"
@@ -191,7 +225,9 @@
       },
       "time": 1263168508,
       "description": "Sucralose hemolysis test",
-      "status": "completed",
+      "status_code": {
+        "HL7 ActStatus": ["completed"]
+      },
       "comment": "Negative"
     }
   ],
@@ -334,6 +370,10 @@
           }
         }
       ],
+      "cumulativeMedicationDuration": {
+        "scalar": 3,
+        "unit": "d"
+      },
       "orderInformation": [
         {
           "orderDateTime": 1073238725,

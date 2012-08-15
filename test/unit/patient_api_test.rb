@@ -49,6 +49,9 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 2011, @context.eval('patient.encounters()[0].encounterDuration().hi().getFullYear()')
     assert_equal 'PCP referred', @context.eval('patient.encounters()[0].reasonForVisit().freeTextType()')
     assert_equal 'CPT', @context.eval('patient.encounters()[0].reasonForVisit().type()[0].codeSystemName()')
+    assert_equal 'HL7 Healthcare Service Location', @context.eval('patient.encounters()[0].facility().codeSystemName()')
+    assert_equal '1155-1', @context.eval('patient.encounters()[0].facility().code()')
+    assert_equal 'General Hospital', @context.eval('patient.encounters()[0].facility().name()')
   end
 
   def test_procedures
@@ -70,6 +73,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal '105539002', @context.eval('patient.vitalSigns()[0].type()[0].code()')
     assert_equal 'SNOMED-CT', @context.eval('patient.vitalSigns()[0].type()[0].codeSystemName()')
     assert_equal 'completed', @context.eval('patient.vitalSigns()[0].status()')
+    assert_equal 'completed', @context.eval('patient.vitalSigns()[0].statusCode()["HL7 ActStatus"][0]')
     assert_equal 132, @context.eval('patient.vitalSigns()[1].value()["scalar"]')
     assert_equal '8480-6', @context.eval('patient.vitalSigns()[1].resultType()[0].code()')
     assert_equal 'BP taken sitting', @context.eval('patient.vitalSigns()[1].comment()')
@@ -90,6 +94,9 @@ class PatientApiTest  < Test::Unit::TestCase
     assert @context.eval('patient.conditions().match({"SNOMED-CT": ["109838007"]}).length != 0')
     assert_equal 20, @context.eval('patient.conditions()[1].ageAtOnset()')
     assert_equal '55561003', @context.eval('patient.conditions()[1].problemStatus().code()')
+    assert_equal '371924009', @context.eval('patient.conditions()[1].severity().code()')
+    assert_equal 1, @context.eval('patient.conditions()[1].diagnosisPriority()')
+    assert_equal 'principal', @context.eval('patient.conditions()[1].ordinality()')
   end
 
   def test_medications
@@ -105,6 +112,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert @context.eval('patient.medications()[0].statusOfMedication().isActive()')
     assert_equal 30, @context.eval('patient.medications()[0].orderInformation()[0].quantityOrdered().value()')
     assert_equal 20, @context.eval('patient.medications()[0].orderInformation()[0].fills()')
+    assert_equal 3, @context.eval('patient.medications()[0].cumulativeMedicationDuration()["scalar"]')
   end
   
   def test_immunizations

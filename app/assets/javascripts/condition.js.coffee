@@ -40,16 +40,22 @@ class hQuery.Condition extends hQuery.CodedEntry
   ###*
    @returns {Array, hQuery.Provider} an array of providers for the condition
   ###
-  providers: ->    
+  providers: ->
     for  provider in @json['treatingProviders'] 
        new Provider provider 
-       
+
   ###*
   Diagnosis Priority
   @returns {int}
   ###
-  diagnosisPriority: -> @json['diagnosisPriority']
-  
+  diagnosisPriority: -> @json['priority']
+
+  ###*
+  Ordinality
+  @returns {String}
+  ###
+  ordinality: -> @json['ordinality']
+
   ###*
   age at onset
   @returns {int}
@@ -74,3 +80,9 @@ class hQuery.Condition extends hQuery.CodedEntry
   @returns {String}
   ###
   comment: -> @json['comment']
+  
+  ###*
+  This is a description of the level of the severity of the condition.
+  @returns {CodedValue} 
+  ###
+  severity: -> new hQuery.CodedValue @json['severity']['code'], @json['severity']['codeSystem']

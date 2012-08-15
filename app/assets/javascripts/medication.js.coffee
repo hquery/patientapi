@@ -258,6 +258,12 @@ class hQuery.Medication  extends hQuery.CodedEntry
   @returns {String} free text instructions to the patient
   ###
   patientInstructions: -> @json['patientInstructions']
+  
+  ###*
+  The duration over which this medication has been active. For example, 5 days.
+  @returns {Hash} with two keys: unit and scalar
+  ###
+  cumulativeMedicationDuration: -> @json['cumulativeMedicationDuration']
 
   ###*
   @returns {Array} an array of {@link FulFillment} objects
