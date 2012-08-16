@@ -164,4 +164,11 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 1, @context.eval('patient.socialHistories().match({"SNOMED-CT": ["229819007"]}).length')
   end
   
+  def test_functional_status
+    assert_equal 1, @context.eval('patient.functionalStatuses().length')
+    assert_equal 'result', @context.eval('patient.functionalStatuses()[0].type()')
+    assert_equal 'patient reported', @context.eval('patient.functionalStatuses()[0].source().code()')
+    
+  end
+  
 end

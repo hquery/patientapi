@@ -430,5 +430,21 @@
       "description": "Tobacco use and exposure",
       "value": "1 pack per day"
     }
+  ],
+  "functional_statuses": [
+    {
+      "codes": {
+        "SNOMED-CT": [
+          "273447005"
+        ]        
+      },
+      "start_time": 1269762691,
+      "end_time": 1269762693,
+      "type": "result",
+      "source": {
+        "code": "patient reported",
+        "codeSystem": "SNOMED-CT"
+      }
+    }
   ]
 }
