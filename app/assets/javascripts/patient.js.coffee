@@ -12,6 +12,7 @@
 # =require socialhistory.js.coffee
 # =require caregoal.js.coffee
 # =require medicalequipment.js.coffee
+# =require functionalstatus.js.coffee
 
 ###*
 @namespace scoping into the hquery namespace
@@ -290,3 +291,12 @@ class hQuery.Patient extends hQuery.Person
         list.pushIfUsable(new hQuery.MedicalEquipment(equipment))
     list
 
+  ###*
+  @returns {hQuery.CodedEntryList} A list of {@link FunctionalStatus} objects
+  ###
+  functionalStatuses: ->
+    list = new hQuery.CodedEntryList
+    if @json['functional_statuses']
+      for fs in @json['functional_statuses']
+        list.pushIfUsable(new hQuery.FunctionalStatus(fs))
+    list

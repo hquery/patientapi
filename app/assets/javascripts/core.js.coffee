@@ -319,7 +319,7 @@ class hQuery.CodedEntry
       @_endDate = hQuery.dateFromUtcSeconds @json['end_time']
     @_type = hQuery.createCodedValues @json['codes']
     @_statusCode = @json['status_code']
-    @_id = @json['id']
+    @id = @json['_id']
     @_freeTextType = @json['description']
 
   ###*
@@ -372,12 +372,6 @@ class hQuery.CodedEntry
   ###
   freeTextType: -> @_freeTextType
 
-  ###*
-  Unique identifier for this coded entry
-  @returns {String}
-  ###
-  id: -> @_id
-  
   ###*
   Status for this coded entry
   @returns {String}

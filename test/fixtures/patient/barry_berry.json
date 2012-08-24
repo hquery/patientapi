@@ -101,7 +101,7 @@
       },
       "time": 1268042997,
       "description": "Outpatient encounter",
-      "id": "OP12345",
+      "_id": "OP12345",
       "dischargeDisp": "Home",
       "admitType": {
         "code": "04",
@@ -429,6 +429,22 @@
       "time": 1269762692,
       "description": "Tobacco use and exposure",
       "value": "1 pack per day"
+    }
+  ],
+  "functional_statuses": [
+    {
+      "codes": {
+        "SNOMED-CT": [
+          "273447005"
+        ]        
+      },
+      "start_time": 1269762691,
+      "end_time": 1269762693,
+      "type": "result",
+      "source": {
+        "code": "patient reported",
+        "codeSystem": "SNOMED-CT"
+      }
     }
   ]
 }
