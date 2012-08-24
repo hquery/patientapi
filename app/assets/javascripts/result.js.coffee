@@ -17,7 +17,6 @@ observations.
 class hQuery.Result extends hQuery.CodedEntry
   constructor: (@json) ->
     super(@json)
-  
 
   ###*
   ASTM CCR defines a restricted set of required result Type codes (see ResultTypeCode in section 7.3
