@@ -28,12 +28,6 @@ class hQuery.Result extends hQuery.CodedEntry
   resultType: -> this.type()
 
   ###*
-  Returns the value of the result. This will return an object. The properties of this
-  object are dependent on the type of result.
-  ###
-  value: -> @json['value']
-
-  ###*
   @returns {CodedValue}
   ###
   interpretation: -> new hQuery.CodedValue @json['interpretation'].code, @json['interpretation'].codeSystem

@@ -409,6 +409,12 @@ class hQuery.CodedEntry
   negationInd: -> @json['negationInd'] || false
   
   ###*
+  Returns the value of the result. This will return an object. The properties of this
+  object are dependent on the type of result.
+  ###
+  values: -> @json['values']
+  
+  ###*
   Indicates the reason an entry was negated.
   @returns {hQuery.CodedValue}   Used to indicate reason an immunization was not administered.
   ###

@@ -188,10 +188,10 @@
       "status_code": {
         "HL7 ActStatus": ["completed"]
       },
-      "value": {
+      "values": [{
         "scalar": 132,
         "units": "mm[Hg]"
-      },
+      }],
       "comment": "BP taken sitting"
     }
   ],
