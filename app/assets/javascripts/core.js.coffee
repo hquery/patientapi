@@ -23,6 +23,15 @@ class hQuery.Scalar
   value: -> @json['value']
 
 ###*
+@class PhysicalQuantity - a representation of a physical quantity
+@exports PhysicalQuantity as hQuery.PhysicalQuantity
+###
+class hQuery.PhysicalQuantity
+  constructor: (@json) ->
+  units: -> @json['units']
+  scalar: -> @json['scalar']
+
+###*
 @class A code with its corresponding code system
 @exports CodedValue as hQuery.CodedValue
 ###
@@ -233,36 +242,36 @@ class hQuery.Organization
     for tel in @json['telecoms']
       new hQuery.Telecom tel
 
+###*
+@class a Facility
+@exports Organization as hQuery.Facility
+###
+class hQuery.Facility extends hQuery.CodedValue
+  constructor: (@json) ->
+    if @json['code']?
+      super @json['code']['code'], @json['code']['codeSystem']
+
   ###*
-  @class a Facility
-  @exports Organization as hQuery.Facility
+  @returns {String} the name of the facility
   ###
-  class hQuery.Facility extends hQuery.CodedValue
-    constructor: (@json) ->
-      if @json['code']?
-        super @json['code']['code'], @json['code']['codeSystem']
+  name: -> @json['name']
 
-    ###*
-    @returns {String} the name of the facility
-    ###
-    name: -> @json['name']
+  ###*
+  @returns {Array} an array of {@link hQuery.Address} objects associated with the facility
+  ###
+  addresses: ->
+    list = []
+    if @json['addresses']
+      for address in @json['addresses']
+        list.push(new hQuery.Address(address))
+    list
 
-    ###*
-    @returns {Array} an array of {@link hQuery.Address} objects associated with the facility
-    ###
-    addresses: ->
-      list = []
-      if @json['addresses']
-        for address in @json['addresses']
-          list.push(new hQuery.Address(address))
-      list
-
-    ###*
-    @returns {Array} an array of {@link hQuery.Telecom} objects associated with the facility
-    ###
-    telecoms: ->
-      for tel in @json['telecoms']
-        new hQuery.Telecom tel
+  ###*
+  @returns {Array} an array of {@link hQuery.Telecom} objects associated with the facility
+  ###
+  telecoms: ->
+    for tel in @json['telecoms']
+      new hQuery.Telecom tel
 
 
 ###*
@@ -402,6 +411,21 @@ class hQuery.CodedEntry
   ###
   negationInd: -> @json['negationInd'] || false
   
+  ###*
+  Returns the values of the result. This will return an array that contains
+  PhysicalQuantity or CodedValue objects depending on the result type.
+  @returns {Array} containing either PhysicalQuantity and/or CodedValues
+  ###
+  values: ->
+    values = []
+    for value in @json['values']
+      if value['codes']?
+        values.push hQuery.createCodedValues values
+      else
+        values.push new hQuery.PhysicalQuantity value
+    values
+
+
   ###*
   Indicates the reason an entry was negated.
   @returns {hQuery.CodedValue}   Used to indicate reason an immunization was not administered.

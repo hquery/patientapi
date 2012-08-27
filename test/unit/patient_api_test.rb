@@ -74,7 +74,7 @@ class PatientApiTest  < Test::Unit::TestCase
     assert_equal 'SNOMED-CT', @context.eval('patient.vitalSigns()[0].type()[0].codeSystemName()')
     assert_equal 'completed', @context.eval('patient.vitalSigns()[0].status()')
     assert_equal 'completed', @context.eval('patient.vitalSigns()[0].statusCode()["HL7 ActStatus"][0]')
-    assert_equal 132, @context.eval('patient.vitalSigns()[1].value()["scalar"]')
+    assert_equal 132, @context.eval('patient.vitalSigns()[1].values()[0].scalar()')
     assert_equal '8480-6', @context.eval('patient.vitalSigns()[1].resultType()[0].code()')
     assert_equal 'BP taken sitting', @context.eval('patient.vitalSigns()[1].comment()')
   end
@@ -162,6 +162,13 @@ class PatientApiTest  < Test::Unit::TestCase
   def test_socialhistory
     assert_equal 1, @context.eval('patient.socialHistories().length')
     assert_equal 1, @context.eval('patient.socialHistories().match({"SNOMED-CT": ["229819007"]}).length')
+  end
+  
+  def test_functional_status
+    assert_equal 1, @context.eval('patient.functionalStatuses().length')
+    assert_equal 'result', @context.eval('patient.functionalStatuses()[0].type()')
+    assert_equal 'patient reported', @context.eval('patient.functionalStatuses()[0].source().code()')
+    
   end
   
 end

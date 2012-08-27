@@ -17,7 +17,6 @@ observations.
 class hQuery.Result extends hQuery.CodedEntry
   constructor: (@json) ->
     super(@json)
-  
 
   ###*
   ASTM CCR defines a restricted set of required result Type codes (see ResultTypeCode in section 7.3
@@ -26,12 +25,6 @@ class hQuery.Result extends hQuery.CodedEntry
   @returns {CodedValue}
   ###
   resultType: -> this.type()
-
-  ###*
-  Returns the value of the result. This will return an object. The properties of this
-  object are dependent on the type of result.
-  ###
-  value: -> @json['value']
 
   ###*
   @returns {CodedValue}

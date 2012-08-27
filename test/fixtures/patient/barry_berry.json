@@ -188,10 +188,10 @@
       "status_code": {
         "HL7 ActStatus": ["completed"]
       },
-      "value": {
+      "values": [{
         "scalar": 132,
         "units": "mm[Hg]"
-      },
+      }],
       "comment": "BP taken sitting"
     }
   ],
@@ -429,6 +429,22 @@
       "time": 1269762692,
       "description": "Tobacco use and exposure",
       "value": "1 pack per day"
+    }
+  ],
+  "functional_statuses": [
+    {
+      "codes": {
+        "SNOMED-CT": [
+          "273447005"
+        ]        
+      },
+      "start_time": 1269762691,
+      "end_time": 1269762693,
+      "type": "result",
+      "source": {
+        "code": "patient reported",
+        "codeSystem": "SNOMED-CT"
+      }
     }
   ]
 }
