@@ -418,12 +418,12 @@ class hQuery.CodedEntry
   ###
   values: ->
     values = []
-    allValues = @json['values'] || []
-    for value in allValues
-      if value['scalar']?
-        values.push new hQuery.PhysicalQuantity value
-      else
-        values.push hQuery.createCodedValues values
+    if @json['values']
+      for value in @json['values']
+        if value['scalar']?
+          values.push new hQuery.PhysicalQuantity value
+        else
+          values.push hQuery.createCodedValues values
     values
 
 
